@@ -7,8 +7,11 @@ Ferro Rod is a Firebase starter kit based on React and Bulma
 This starter kit consists of three projects:
 
 1.) ferrorod is the front-end
+
 2.) ferrofunctions is the back-end functions
+
 3.) ferroadmin is admin utilities
+
 
 ## Features
 
