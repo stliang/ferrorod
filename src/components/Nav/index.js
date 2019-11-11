@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-import {  Navbar } from 'react-bulma-components';
+import { Navbar } from 'react-bulma-components';
 
 const Nav = () => {
     return (
