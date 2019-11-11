@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 const CurrentUser = () => {
   const { user, initialising, error, login, logout } = useContext(UserContext);
   let history = useHistory();
-
+  debugger
   if (initialising) {
     return (
       <div>
