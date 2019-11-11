@@ -1,0 +1,33 @@
+import * as firebase from 'firebase'
+import 'firebase/auth'
+import 'firebase/firestore'
+import { config } from '../../config/firebaseConfig'
+// Initialize Firebase
+firebase.initializeApp(config)
+const Firebase = {
+    // auth
+    loginWithGoogle: () => {
+        return firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+    },
+    loginWithEmail: (email, password) => {
+        return firebase.auth().signInWithEmailAndPassword(email, password)
+    },
+    signupWithEmail: (email, password) => {
+        return firebase.auth().createUserWithEmailAndPassword(email, password)
+    },
+    signOut: () => {
+        return firebase.auth().signOut()
+    },
+    checkUserAuth: user => {
+        return firebase.auth().onAuthStateChanged(user)
+    },
+    // firestore
+    createNewUser: userData => {
+        return firebase
+            .firestore()
+            .collection('users')
+            .doc(`${userData.uid}`)
+            .set(userData)
+    }
+}
+export default Firebase
