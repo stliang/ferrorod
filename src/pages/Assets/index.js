@@ -4,7 +4,7 @@ import makeData from '../../test/makeData'
 
 const Assets = () => {
   const [data, setData] = React.useState(() => makeData(20));
-  // debugger
+  debugger
   return (
     <div>
       <h1>Assets</h1>

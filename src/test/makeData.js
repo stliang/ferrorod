@@ -11,7 +11,7 @@ const range = len => {
 const newAsset = () => {
     const typeChance = Math.random()
     return {
-        name: namor.generate({ words: 1, numbers: 0 }),
+        farm: namor.generate({ words: 1, numbers: 0 }),
         value: Math.floor(Math.random() * 100),
         cost: Math.floor(Math.random() * 100),
         quantity: Math.floor(Math.random() * 1000),
