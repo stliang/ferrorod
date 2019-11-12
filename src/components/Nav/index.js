@@ -23,12 +23,15 @@ const Nav = () => {
                             Analytics
                         </Navbar.Link>
                         <Navbar.Dropdown>
+                            <Navbar.Item to={ROUTES.ASSETS.path} renderAs={Link}>
+                                Assets
+                            </Navbar.Item>
                             <Navbar.Item href="#">
                                 Cash Flow
-                                </Navbar.Item>
+                            </Navbar.Item>
                             <Navbar.Item href="#">
                                 Work Flow
-                                </Navbar.Item>
+                            </Navbar.Item>
                         </Navbar.Dropdown>
                     </Navbar.Item>
                     <Navbar.Item to={ROUTES.LANDING.path} renderAs={Link}>Landing</Navbar.Item>
