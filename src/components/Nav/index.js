@@ -29,9 +29,6 @@ const Nav = () => {
                             <Navbar.Item href="#">
                                 Cash Flow
                             </Navbar.Item>
-                            <Navbar.Item href="#">
-                                Work Flow
-                            </Navbar.Item>
                         </Navbar.Dropdown>
                     </Navbar.Item>
                     <Navbar.Item to={ROUTES.LANDING.path} renderAs={Link}>Landing</Navbar.Item>
