@@ -1,4 +1,5 @@
 import namor from 'namor'
+import * as When from './when'
 
 const range = len => {
     const arr = []
@@ -11,10 +12,12 @@ const range = len => {
 const newAsset = () => {
     const typeChance = Math.random()
     return {
-        farm: namor.generate({ words: 1, numbers: 0 }),
+        firstName: namor.generate({ words: 1, numbers: 0 }),
+        lastName: namor.generate({ words: 1, numbers: 0 }),
         value: Math.floor(Math.random() * 100),
         cost: Math.floor(Math.random() * 100),
         quantity: Math.floor(Math.random() * 1000),
+        date: When.ranDate(),
         type:
             typeChance > 0.66
                 ? 'cow'
