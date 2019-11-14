@@ -1,5 +1,6 @@
 import namor from 'namor'
 import * as When from './when'
+import uuid from "uuid"
 
 const range = len => {
     const arr = []
@@ -12,6 +13,7 @@ const range = len => {
 const newAsset = () => {
     const typeChance = Math.random()
     return {
+        uuid: uuid.v4(),
         firstName: namor.generate({ words: 1, numbers: 0 }),
         lastName: namor.generate({ words: 1, numbers: 0 }),
         value: Math.floor(Math.random() * 100),

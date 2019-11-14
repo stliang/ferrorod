@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import makeData from '../../utils/makeData';
 import { useTable, usePagination } from 'react-table';
 import styled from 'styled-components';
+import { FirebaseContext } from '../../contexts/FirebaseContextProvider';
+import { stringify } from 'querystring';
 
 const Styles = styled.div`
   padding: 1rem;
@@ -190,6 +192,7 @@ function Table({ columns, data, updateMyData, disablePageResetOnDataChange }) {
 }
 
 function Assets() {
+  const { firebaseInstance } = useContext(FirebaseContext)
   const columns = React.useMemo(
     () => [
       {
@@ -234,7 +237,7 @@ function Assets() {
     []
   )
 
-  const [data, setData] = React.useState(() => makeData(20))
+  const [data, setData] = React.useState(() => makeData(2))
   const [originalData] = React.useState(data)
   const [skipPageReset, setSkipPageReset] = React.useState(false)
 
@@ -271,9 +274,26 @@ function Assets() {
   // illustrate that flow...
   const resetData = () => setData(originalData)
 
+  // Upload data to cloud storage
+  const saveData = (e) => {
+    e.preventDefault()
+    debugger
+    data.map(({uuid, firstName, lastName, value, cost, type, date, quantity}) => {
+      // const {firstName, lastName, value, cost, type, date, quantity} = row
+      firebaseInstance
+        .firestore()
+        .collection('assets')
+        .add({uuid, firstName, lastName, value, cost, type, date, quantity})
+        .then(() => {
+          console.log(`data saved`)
+        })
+    })
+  }
+
   return (
     <Styles>
       <button onClick={resetData}>Reset Data</button>
+      <button onClick={saveData}>Save Data</button>
       <Table
         columns={columns}
         data={data}
