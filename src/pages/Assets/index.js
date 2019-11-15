@@ -3,7 +3,6 @@ import makeData from '../../utils/makeData';
 import { useTable, usePagination } from 'react-table';
 import styled from 'styled-components';
 import { FirebaseContext } from '../../contexts/FirebaseContextProvider';
-import { stringify } from 'querystring';
 
 const Styles = styled.div`
   padding: 1rem;
@@ -279,14 +278,17 @@ function Assets() {
     e.preventDefault()
     debugger
     data.map(({uuid, firstName, lastName, value, cost, type, date, quantity}) => {
-      // const {firstName, lastName, value, cost, type, date, quantity} = row
       firebaseInstance
         .firestore()
         .collection('assets')
-        .add({uuid, firstName, lastName, value, cost, type, date, quantity})
+        .doc(uuid)
+        .set({firstName, lastName, value, cost, type, date, quantity})
         .then(() => {
-          console.log(`data saved`)
+          console.log(`data upserted`)
         })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
     })
   }
 
