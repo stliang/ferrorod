@@ -3,6 +3,7 @@ import makeData from '../../utils/makeData';
 import { useTable, usePagination } from 'react-table';
 import styled from 'styled-components';
 import { FirebaseContext } from '../../contexts/FirebaseContextProvider';
+import { Section, Table } from 'react-bulma-components';
 
 const Styles = styled.div`
   padding: 1rem;
@@ -77,7 +78,7 @@ const defaultColumn = {
 }
 
 // Be sure to pass our updateMyData and the disablePageResetOnDataChange option
-function Table({ columns, data, updateMyData, disablePageResetOnDataChange }) {
+function AssetTable({ columns, data, updateMyData, disablePageResetOnDataChange }) {
   // For this example, we're using pagination to illustrate how to stop
   // the current page from resetting when our data changes
   // Otherwise, nothing is different here.
@@ -115,7 +116,7 @@ function Table({ columns, data, updateMyData, disablePageResetOnDataChange }) {
   // Render the UI for your table
   return (
     <>
-      <table {...getTableProps()}>
+      <Table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -141,7 +142,7 @@ function Table({ columns, data, updateMyData, disablePageResetOnDataChange }) {
             }
           )}
         </tbody>
-      </table>
+      </Table>
       <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {'<<'}
@@ -293,16 +294,16 @@ function Assets() {
   }
 
   return (
-    <Styles>
+    <Section>
       <button onClick={resetData}>Reset Data</button>
       <button onClick={saveData}>Save Data</button>
-      <Table
+      <AssetTable
         columns={columns}
         data={data}
         updateMyData={updateMyData}
         disablePageResetOnDataChange={skipPageReset}
       />
-    </Styles>
+    </Section>
   )
 }
 
