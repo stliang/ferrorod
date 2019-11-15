@@ -23,10 +23,8 @@ In order to run this starter kit, you must create a project and database in Fire
 
 ## TODO
 
-1.) Use UUID to update record
+1.) Theme up react table, right now the cells are too wide and the boarder sytle don't fit within the overal theme of the project.
 
-2.) Theme up react table, right now the cells are too wide and the boarder sytle don't fit within the overal theme of the project.
-
-3.) Restructure the Assets page code. The style.component seems to belong to a different location.  The editable cell code block seems to be reusable somewhere else.
+2.) Restructure the Assets page code. The style.component seems to belong to a different location.  The editable cell code block seems to be reusable somewhere else.
 
 
