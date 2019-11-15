@@ -5,44 +5,63 @@ import styled from 'styled-components';
 import { FirebaseContext } from '../../contexts/FirebaseContextProvider';
 import { Section, Table } from 'react-bulma-components';
 
+// const Styles = styled.div`
+//   padding: 1rem;
+
+//   table {
+//     border-spacing: 0;
+//     border: 1px solid black;
+
+//     tr {
+//       :last-child {
+//         td {
+//           border-bottom: 0;
+//         }
+//       }
+//     }
+
+//     th,
+//     td {
+//       margin: 0;
+//       padding: 0.5rem;
+//       border-bottom: 1px solid black;
+//       border-right: 1px solid black;
+
+//       :last-child {
+//         border-right: 0;
+//       }
+
+//       input {
+//         font-size: 1rem;
+//         padding: 0;
+//         margin: 0;
+//         border: 0;
+//       }
+//     }
+//   }
+
+//   .pagination {
+//     padding: 0.5rem;
+//   }
+// `
+
+// Try styling input box only
+const StyledInput = styled.input`
+input {
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+`
+
 const Styles = styled.div`
-  padding: 1rem;
-
-  table {
-    border-spacing: 0;
-    border: 1px solid black;
-
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
-    }
-
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-
-      :last-child {
-        border-right: 0;
-      }
-
       input {
         font-size: 1rem;
         padding: 0;
         margin: 0;
         border: 0;
       }
-    }
-  }
-
-  .pagination {
-    padding: 0.5rem;
-  }
 `
 
 // Create an editable cell renderer
@@ -78,7 +97,7 @@ const defaultColumn = {
 }
 
 // Be sure to pass our updateMyData and the disablePageResetOnDataChange option
-function AssetTable({ columns, data, updateMyData, disablePageResetOnDataChange }) {
+function EditableTable({ columns, data, updateMyData, disablePageResetOnDataChange }) {
   // For this example, we're using pagination to illustrate how to stop
   // the current page from resetting when our data changes
   // Otherwise, nothing is different here.
@@ -116,7 +135,7 @@ function AssetTable({ columns, data, updateMyData, disablePageResetOnDataChange 
   // Render the UI for your table
   return (
     <>
-      <Table {...getTableProps()}>
+      <Table class="table is-bordered is-striped is-hoverable" {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -278,31 +297,33 @@ function Assets() {
   const saveData = (e) => {
     e.preventDefault()
     debugger
-    data.map(({uuid, firstName, lastName, value, cost, type, date, quantity}) => {
+    data.map(({ uuid, firstName, lastName, value, cost, type, date, quantity }) => {
       firebaseInstance
         .firestore()
         .collection('assets')
         .doc(uuid)
-        .set({firstName, lastName, value, cost, type, date, quantity})
+        .set({ firstName, lastName, value, cost, type, date, quantity })
         .then(() => {
           console.log(`data upserted`)
         })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
         });
     })
   }
 
   return (
     <Section>
-      <button onClick={resetData}>Reset Data</button>
-      <button onClick={saveData}>Save Data</button>
-      <AssetTable
-        columns={columns}
-        data={data}
-        updateMyData={updateMyData}
-        disablePageResetOnDataChange={skipPageReset}
-      />
+    
+        <button onClick={resetData}>Reset Data</button>
+        <button onClick={saveData}>Save Data</button>
+        <EditableTable
+          columns={columns}
+          data={data}
+          updateMyData={updateMyData}
+          disablePageResetOnDataChange={skipPageReset}
+        />
+        <Styles></Styles>
     </Section>
   )
 }
