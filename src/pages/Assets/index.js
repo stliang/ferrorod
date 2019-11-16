@@ -5,64 +5,12 @@ import styled from 'styled-components';
 import { FirebaseContext } from '../../contexts/FirebaseContextProvider';
 import { Section, Table } from 'react-bulma-components';
 
-// const Styles = styled.div`
-//   padding: 1rem;
-
-//   table {
-//     border-spacing: 0;
-//     border: 1px solid black;
-
-//     tr {
-//       :last-child {
-//         td {
-//           border-bottom: 0;
-//         }
-//       }
-//     }
-
-//     th,
-//     td {
-//       margin: 0;
-//       padding: 0.5rem;
-//       border-bottom: 1px solid black;
-//       border-right: 1px solid black;
-
-//       :last-child {
-//         border-right: 0;
-//       }
-
-//       input {
-//         font-size: 1rem;
-//         padding: 0;
-//         margin: 0;
-//         border: 0;
-//       }
-//     }
-//   }
-
-//   .pagination {
-//     padding: 0.5rem;
-//   }
-// `
-
-// Try styling input box only
-const StyledInput = styled.input`
-input {
-  font-size: 1rem;
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-`
-
-const Styles = styled.div`
-      input {
-        font-size: 1rem;
-        padding: 0;
-        margin: 0;
-        border: 0;
-      }
-`
+const inputStyle = {
+  padding: 0,
+  margin: 0,
+  border:0,
+  background: 'transparent',
+};
 
 // Create an editable cell renderer
 const EditableCell = ({
@@ -88,7 +36,7 @@ const EditableCell = ({
     setValue(initialValue)
   }, [initialValue])
 
-  return <input value={value} onChange={onChange} onBlur={onBlur} />
+  return <input style={inputStyle} value={value} onChange={onChange} onBlur={onBlur} />
 }
 
 // Set our editable cell renderer as the default Cell renderer
@@ -314,16 +262,15 @@ function Assets() {
 
   return (
     <Section>
-    
-        <button onClick={resetData}>Reset Data</button>
-        <button onClick={saveData}>Save Data</button>
-        <EditableTable
-          columns={columns}
-          data={data}
-          updateMyData={updateMyData}
-          disablePageResetOnDataChange={skipPageReset}
-        />
-        <Styles></Styles>
+
+      <button onClick={resetData}>Reset Data</button>
+      <button onClick={saveData}>Save Data</button>
+      <EditableTable
+        columns={columns}
+        data={data}
+        updateMyData={updateMyData}
+        disablePageResetOnDataChange={skipPageReset}
+      />
     </Section>
   )
 }
