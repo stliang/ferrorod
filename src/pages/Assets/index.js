@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import makeData from '../../utils/makeData';
 import { useTable, usePagination } from 'react-table';
-import styled from 'styled-components';
 import { FirebaseContext } from '../../contexts/FirebaseContextProvider';
 import { Section, Table } from 'react-bulma-components';
 
@@ -204,7 +203,7 @@ function Assets() {
     []
   )
 
-  const [data, setData] = React.useState(() => makeData(2))
+  const [data, setData] = React.useState(() => makeData(60))
   const [originalData] = React.useState(data)
   const [skipPageReset, setSkipPageReset] = React.useState(false)
 
@@ -262,7 +261,6 @@ function Assets() {
 
   return (
     <Section>
-
       <button onClick={resetData}>Reset Data</button>
       <button onClick={saveData}>Save Data</button>
       <EditableTable
