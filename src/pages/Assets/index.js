@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import makeData from '../../utils/makeData';
 import { useTable, usePagination } from 'react-table';
 import { FirebaseContext } from '../../contexts/FirebaseContextProvider';
-import { Section, Table } from 'react-bulma-components';
+// import { Section, Table } from 'react-bulma-components';
 
 const inputStyle = {
   padding: 0,
@@ -82,7 +82,7 @@ function EditableTable({ columns, data, updateMyData, disablePageResetOnDataChan
   // Render the UI for your table
   return (
     <>
-      <Table class="table is-bordered is-striped is-hoverable" {...getTableProps()}>
+      <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -108,7 +108,7 @@ function EditableTable({ columns, data, updateMyData, disablePageResetOnDataChan
             }
           )}
         </tbody>
-      </Table>
+      </table>
       <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {'<<'}
@@ -260,7 +260,7 @@ function Assets() {
   }
 
   return (
-    <Section>
+    <div>
       <button onClick={resetData}>Reset Data</button>
       <button onClick={saveData}>Save Data</button>
       <EditableTable
@@ -269,7 +269,7 @@ function Assets() {
         updateMyData={updateMyData}
         disablePageResetOnDataChange={skipPageReset}
       />
-    </Section>
+    </div>
   )
 }
 

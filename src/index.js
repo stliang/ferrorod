@@ -9,7 +9,6 @@ import Layout from './components/Layout';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 const App = props => (
-
     <FirebaseContextProvider>
         <UserContextProvider>
             <BrowserRouter>
@@ -17,7 +16,6 @@ const App = props => (
             </BrowserRouter>
         </UserContextProvider>
     </FirebaseContextProvider>
-
 );
 
 ReactDOM.render(
