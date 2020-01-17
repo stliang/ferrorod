@@ -2,7 +2,7 @@ import React from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import EnhancedTable from './EnhancedTable';
-import makeData from '../views/makeData';
+import makeData from './makeData';
 
 const UserTable = () => {
     const columns = React.useMemo(

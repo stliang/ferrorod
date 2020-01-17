@@ -4,7 +4,7 @@ import React from 'react';
 import AddUserDialog from './AddUserDialog';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
-import GlobalFilter from '../poc/GlobalFilter';
+import GlobalFilter from './GlobalFilter';
 import IconButton from '@material-ui/core/IconButton';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';

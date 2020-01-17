@@ -2,14 +2,14 @@ import React from 'react';
 import withRoot from '../../withRoot';
 import AppFooter from '../../views/AppFooter';
 import PrimarySearchAppBar from '../../views/PrimarySearchAppBar';
-import UserTable from '../../poc/UserTable';
+import UserTable from '../../views/UserTable';
 
 const Home = () => {
   return (
     <React.Fragment>
-      {/* <PrimarySearchAppBar /> */}
+      <PrimarySearchAppBar />
       <UserTable />
-      {/* <AppFooter /> */}
+      <AppFooter />
     </React.Fragment>
   );
 }
