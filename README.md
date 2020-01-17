@@ -23,8 +23,10 @@ In order to run this starter kit, you must create a project and database in Fire
 
 ## TODO
 
-1.) Theme up react table, right now the cells are too wide and the boarder sytle don't fit within the overal theme of the project.
-
-2.) Restructure the Assets page code. The style.component seems to belong to a different location.  The editable cell code block seems to be reusable somewhere else.
+1.) Fix CSS so the pink color on the footer is controled
+2.) Clean up code, file, and directory structure
+3.) Fix the header of reat-table so the toolbar does not hid the table header
+4.) Implement react-table interactions with server side persistance layer
+5.) Implement server side pagination
 
 
