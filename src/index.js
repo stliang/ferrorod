@@ -6,7 +6,6 @@ import FirebaseContextProvider from './contexts/FirebaseContextProvider';
 import UserContextProvider from './contexts/UserContextProvider';
 import { BrowserRouter } from "react-router-dom";
 import Layout from './components/Layout';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 const App = props => (
     <FirebaseContextProvider>

@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Container, Content, Footer, Heading, Hero, Section } from 'react-bulma-components';
 import Nav from '../Nav'
 import Router from '../Router';
 import Home from '../../pages/Home'

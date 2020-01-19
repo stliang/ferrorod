@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import makeData from '../../utils/makeData';
 import { useTable, usePagination } from 'react-table';
 import { FirebaseContext } from '../../contexts/FirebaseContextProvider';
-// import { Section, Table } from 'react-bulma-components';
 
 const inputStyle = {
   padding: 0,
