@@ -3,6 +3,7 @@ import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import AppsIcon from '@material-ui/icons/Apps';
 import Toolbar from '@material-ui/core/Toolbar';
+import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
@@ -257,6 +258,7 @@ const PrimarySearchAppBar = (props) => {
     return (
         <div className={classes.grow}>
             <AppBar position="fixed">
+            <Container maxWidth="lg">
                 <Toolbar>
                     <IconButton
                         edge="start"
@@ -325,6 +327,7 @@ const PrimarySearchAppBar = (props) => {
                         </IconButton>
                     </div>
                 </Toolbar>
+                </Container>
             </AppBar>
             {renderMobileMenu}
             {renderMenu}

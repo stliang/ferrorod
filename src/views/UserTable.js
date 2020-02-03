@@ -1,7 +1,8 @@
 import React from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import EnhancedTable from './EnhancedTable';
+import EnhancedTable from '../components/UserTable/EnhancedTable';
+import PrimarySearchAppBar from './PrimarySearchAppBar';
 import makeData from './makeData';
 
 const UserTable = () => {
@@ -61,7 +62,7 @@ const UserTable = () => {
     }
 
     return (
-        <div>
+        <React.Fragment>
             <CssBaseline />
             <EnhancedTable
                 columns={columns}
@@ -70,7 +71,7 @@ const UserTable = () => {
                 updateMyData={updateMyData}
                 skipPageReset={skipPageReset}
             />
-        </div>
+        </React.Fragment>
     )
 }
 

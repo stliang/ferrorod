@@ -164,7 +164,7 @@ const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) 
 
     // Render the UI for your table
     return (
-        <TableContainer>
+        <TableContainer maxWidth="lg">
             <TableToolbar
                 numSelected={Object.keys(selectedRowIds).length}
                 deleteUserHandler={deleteUserHandler}
