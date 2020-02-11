@@ -13,6 +13,27 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 
+// Drawer menu
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+// import MailIcon from '@material-ui/icons/Mail';
+
+const useStylesDrawer = makeStyles({
+    list: {
+        width: 250,
+    },
+    fullList: {
+        width: 'auto',
+    },
+});
+
+
 const styles = theme => ({
     grow: {
         flexGrow: 1,
@@ -162,6 +183,77 @@ const StyledMenu = withStyles({
 ));
 
 const PrimarySearchAppBar = (props) => {
+    const classesDrawer = useStylesDrawer();
+    const [stateDrawer, setStateDrawer] = React.useState({
+      top: false,
+      left: false,
+      bottom: false,
+      right: false,
+    });
+  
+    const toggleDrawer = (side, open) => event => {
+      if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        return;
+      }
+  
+      setStateDrawer({ ...stateDrawer, [side]: open });
+    };
+
+    const sideList = side => (
+        <div
+          className={classesDrawer.list}
+          role="presentation"
+          onClick={toggleDrawer(side, false)}
+          onKeyDown={toggleDrawer(side, false)}
+        >
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      );
+    
+      const fullList = side => (
+        <div
+          className={classesDrawer.fullList}
+          role="presentation"
+          onClick={toggleDrawer(side, false)}
+          onKeyDown={toggleDrawer(side, false)}
+        >
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      );
+
+
     // const classes = useStyles();
     const { classes } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -254,6 +346,9 @@ const PrimarySearchAppBar = (props) => {
 
     return (
         <div className={classes.grow}>
+            <Drawer open={stateDrawer.left} onClose={toggleDrawer('left', false)}>
+                {sideList('left')}
+            </Drawer>
             <AppBar position="fixed">
                 <Container maxWidth="lg">
                     <Toolbar>
@@ -262,6 +357,7 @@ const PrimarySearchAppBar = (props) => {
                             className={classes.menuButton}
                             color="inherit"
                             aria-label="open drawer"
+                            onClick={toggleDrawer('left', true)}
                         >
                             <MenuIcon />
                         </IconButton>
