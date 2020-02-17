@@ -1,4 +1,4 @@
-import * as LEVEL from './roles'
+import * as LEVEL from '../../security/roles'
 
 export const LANDING = { privileges: LEVEL.ANONYMOUS_UP, path: '/' };
 export const SIGN_IN = { privileges: LEVEL.ANONYMOUS_UP, path: '/signin' };

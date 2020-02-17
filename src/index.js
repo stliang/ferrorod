@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import FirebaseContextProvider from './contexts/FirebaseContextProvider';
-import UserContextProvider from './contexts/UserContextProvider';
+import FirebaseContextProvider from './services/contexts/FirebaseContextProvider';
+import UserContextProvider from './services/contexts/UserContextProvider';
 import { BrowserRouter } from "react-router-dom";
 import Layout from './components/Layout';
 

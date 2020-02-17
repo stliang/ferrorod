@@ -1,16 +1,16 @@
 import React from 'react';
 import withRoot from '../../withRoot';
-import AppFooter from '../../views/AppFooter';
-import PrimarySearchAppBar from '../../views/PrimarySearchAppBar';
-import UserTable from '../../views/UserTable';
-import Hero from '../../views/Hero';
+import AppFooter from '../../components/AppFooter';
+import PrimarySearchAppBar from '../../components/PrimarySearchAppBar';
+import Assets from '../Assets';
+import Hero from '../../components/Hero';
 
 const Home = () => {
   return (
     <React.Fragment>
       <PrimarySearchAppBar />
       <Hero />
-      <UserTable />
+      <Assets />
       <AppFooter />
     </React.Fragment>
   );

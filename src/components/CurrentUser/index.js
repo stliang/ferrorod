@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../contexts/UserContextProvider';
+import { UserContext } from '../../services/contexts/UserContextProvider';
 import { useHistory } from 'react-router-dom'
 
 const CurrentUser = () => {

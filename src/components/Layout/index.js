@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from '../Nav'
 import Router from '../Router';
-import Home from '../../pages/Home'
+import Home from '../../scenes/Home'
 
 const Layout = (props) => {
   return (
