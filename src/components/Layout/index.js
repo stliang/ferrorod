@@ -4,13 +4,16 @@ import Router from '../Router';
 import Hero from '../Hero';
 import AppFooter from '../AppFooter';
 import PrimarySearchAppBar from '../PrimarySearchAppBar';
+import POC from '../../scenes/POC';
+
 
 const Layout = (props) => {
   return (
     <div>
       <PrimarySearchAppBar />
       <Hero />
-      <Router />
+      {/* <Router /> */}
+      <POC />
       <AppFooter />
     </div>
   );
