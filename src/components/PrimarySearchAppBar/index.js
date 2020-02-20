@@ -1,3 +1,5 @@
+// RETHINK NAVIGATION WITH https://material-ui.com/guides/composition/#link
+
 import React from 'react';
 import { AppBar, Badge, Container, IconButton, Menu, Toolbar, Typography } from '@material-ui/core';
 import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
