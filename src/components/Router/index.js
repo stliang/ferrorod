@@ -8,6 +8,7 @@ import { AssetsPage, HomePage, LandingPage, SignInPage } from '../../scenes/page
 const PrivilegedRoute = ({ component: Component, privileges, ...rest }) => {
     const { customClaims } = useContext(UserContext);
     const trust = privileges.includes(customClaims.userRole);
+    debugger
     return (
         <Route {...rest} >
             {

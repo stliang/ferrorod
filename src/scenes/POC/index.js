@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from "react";
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -10,8 +10,29 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import Typography from '@material-ui/core/Typography';
-import { Route, MemoryRouter } from 'react-router';
+import { Route, MemoryRouter, Redirect } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
+import Router from '../../components/Router';
+
+
+// import { UserContext } from '../../services/contexts/UserContextProvider';
+import * as ROUTES from '../../components/Router/routes';
+
+// const PrivilegedRoute = ({ component: Component, privileges, ...rest }) => {
+//   const { customClaims } = useContext(UserContext);
+//   const trust = privileges.includes(customClaims.userRole);
+//   return (
+//       <Route {...rest} >
+//           {
+//               trust
+//                   ?
+//                   (<Component />)
+//                   :
+//                   (<Redirect to={{ pathname: ROUTES.SIGN_IN.path }} />)
+//           }
+//       </Route>
+//   );
+// }
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
@@ -49,11 +70,12 @@ export default function POC() {
   return (
     <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
       <div className={classes.root}>
-        <Route>
+        <Router/>
+        {/* <Route>
           {({ location }) => (
             <Typography gutterBottom>Current route: {location.pathname}</Typography>
           )}
-        </Route>
+        </Route> */}
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
             <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
@@ -63,6 +85,9 @@ export default function POC() {
           <List aria-label="secondary mailbox folders">
             <ListItemLink to="/trash" primary="Trash" />
             <ListItemLink to="/spam" primary="Spam" />
+            <ListItemLink to={ROUTES.LANDING.path} primary="Landing" />
+            <ListItemLink to={ROUTES.HOME.path} primary="Home" />
+            <ListItemLink to={ROUTES.SIGN_IN.path} primary="Sign In" />
           </List>
         </Paper>
       </div>

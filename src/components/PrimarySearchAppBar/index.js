@@ -382,17 +382,6 @@ const PrimarySearchAppBar = (props) => {
                                 </Badge>
                             </IconButton>
                             <IconButton
-                                aria-label="apps"
-                                edge="end"
-                                aria-label="account of current user"
-                                aria-controls={menuId}
-                                aria-haspopup="true"
-                                onClick={handleAppsMenuOpen}
-                                color="inherit"
-                            >
-                                <AppsIcon />
-                            </IconButton>
-                            <IconButton
                                 edge="end"
                                 aria-label="account of current user"
                                 aria-controls={menuId}
