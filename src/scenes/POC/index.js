@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { Route, MemoryRouter, Redirect } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 import Router from '../../components/Router';
+import ListItemLink from '../../components/ListItemLink';
 
 
 // import { UserContext } from '../../services/contexts/UserContextProvider';
@@ -34,29 +35,29 @@ import * as ROUTES from '../../components/Router/routes';
 //   );
 // }
 
-function ListItemLink(props) {
-  const { icon, primary, to } = props;
+// function ListItemLink(props) {
+//   const { icon, primary, to } = props;
 
-  const renderLink = React.useMemo(
-    () => React.forwardRef((itemProps, ref) => <RouterLink to={to} ref={ref} {...itemProps} />),
-    [to],
-  );
+//   const renderLink = React.useMemo(
+//     () => React.forwardRef((itemProps, ref) => <RouterLink to={to} ref={ref} {...itemProps} />),
+//     [to],
+//   );
 
-  return (
-    <li>
-      <ListItem button component={renderLink}>
-        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-        <ListItemText primary={primary} />
-      </ListItem>
-    </li>
-  );
-}
+//   return (
+//     <li>
+//       <ListItem button component={renderLink}>
+//         {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+//         <ListItemText primary={primary} />
+//       </ListItem>
+//     </li>
+//   );
+// }
 
-ListItemLink.propTypes = {
-  icon: PropTypes.element,
-  primary: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
-};
+// ListItemLink.propTypes = {
+//   icon: PropTypes.element,
+//   primary: PropTypes.string.isRequired,
+//   to: PropTypes.string.isRequired,
+// };
 
 const useStyles = makeStyles({
   root: {
@@ -68,9 +69,9 @@ export default function POC() {
   const classes = useStyles();
 
   return (
-    <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
+    // <MemoryRouter initialEntries={['/drafts']} initialIndex={0}>
       <div className={classes.root}>
-        <Router/>
+        {/* <Router/> */}
         {/* <Route>
           {({ location }) => (
             <Typography gutterBottom>Current route: {location.pathname}</Typography>
@@ -91,6 +92,6 @@ export default function POC() {
           </List>
         </Paper>
       </div>
-    </MemoryRouter>
+    // </MemoryRouter>
   );
 }

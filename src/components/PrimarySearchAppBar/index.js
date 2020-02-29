@@ -26,6 +26,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 // import MailIcon from '@material-ui/icons/Mail';
 
+import ListItemLink from '../ListItemLink';
+import * as ROUTES from '../Router/routes';
+
 const useStylesDrawer = makeStyles({
     list: {
         width: 250,
@@ -187,73 +190,73 @@ const StyledMenu = withStyles({
 const PrimarySearchAppBar = (props) => {
     const classesDrawer = useStylesDrawer();
     const [stateDrawer, setStateDrawer] = React.useState({
-      top: false,
-      left: false,
-      bottom: false,
-      right: false,
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
     });
-  
+
     const toggleDrawer = (side, open) => event => {
-      if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
-      }
-  
-      setStateDrawer({ ...stateDrawer, [side]: open });
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+
+        setStateDrawer({ ...stateDrawer, [side]: open });
     };
 
     const sideList = side => (
         <div
-          className={classesDrawer.list}
-          role="presentation"
-          onClick={toggleDrawer(side, false)}
-          onKeyDown={toggleDrawer(side, false)}
+            className={classesDrawer.list}
+            role="presentation"
+            onClick={toggleDrawer(side, false)}
+            onKeyDown={toggleDrawer(side, false)}
         >
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+            <List>
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
         </div>
-      );
-    
-      const fullList = side => (
+    );
+
+    const fullList = side => (
         <div
-          className={classesDrawer.fullList}
-          role="presentation"
-          onClick={toggleDrawer(side, false)}
-          onKeyDown={toggleDrawer(side, false)}
+            className={classesDrawer.fullList}
+            role="presentation"
+            onClick={toggleDrawer(side, false)}
+            onKeyDown={toggleDrawer(side, false)}
         >
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+            <List>
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+            <Divider />
+            <List>
+                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
         </div>
-      );
+    );
 
 
     // const classes = useStyles();
@@ -292,9 +295,16 @@ const PrimarySearchAppBar = (props) => {
             id={menuId}
             keepMounted
             open={isMenuOpen}
+            // https://stackoverflow.com/questions/47873566/how-navigate-using-the-menuitem-material-ui-v1
+            //https://github.com/negomi/react-burger-menu/issues/56
+            // isOpen={ false }
+            // open={false}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            {/* <MenuItem component={ListItemLink} to={ROUTES.SIGN_IN.path} primary="Sign In" > */}
+            <MenuItem onClick={handleMenuClose}>
+                <ListItemLink to={ROUTES.SIGN_IN.path} primary="Sign In"  />
+            </MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
         </StyledMenu>
     );

@@ -4,15 +4,15 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import FirebaseContextProvider from './services/contexts/FirebaseContextProvider';
 import UserContextProvider from './services/contexts/UserContextProvider';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import Layout from './components/Layout';
 
 const App = props => (
     <FirebaseContextProvider>
         <UserContextProvider>
-            <BrowserRouter>
+            <MemoryRouter>
                 <Layout />
-            </BrowserRouter>
+            </MemoryRouter>
         </UserContextProvider>
     </FirebaseContextProvider>
 );

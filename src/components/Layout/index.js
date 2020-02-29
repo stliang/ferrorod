@@ -12,8 +12,8 @@ const Layout = (props) => {
     <div>
       <PrimarySearchAppBar />
       <Hero />
-      {/* <Router /> */}
       <POC />
+      <Router />
       <AppFooter />
     </div>
   );
