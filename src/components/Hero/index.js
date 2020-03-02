@@ -12,7 +12,7 @@ export default function Hero() {
   const classes = useStyles();
  
   return (
-    <Container maxWidth="lg">
+    <Container>
       <div className={classes.root}>
         <Typography variant="h2" gutterBottom>
           Material UI Demo

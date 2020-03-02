@@ -4,7 +4,7 @@ import Router from '../Router';
 import Hero from '../Hero';
 import AppFooter from '../AppFooter';
 import PrimarySearchAppBar from '../PrimarySearchAppBar';
-import POC from '../../scenes/POC';
+// import POC from '../../scenes/POC';
 
 
 const Layout = (props) => {
@@ -12,7 +12,6 @@ const Layout = (props) => {
     <div>
       <PrimarySearchAppBar />
       <Hero />
-      <POC />
       <Router />
       <AppFooter />
     </div>

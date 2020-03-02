@@ -76,7 +76,7 @@ export default function POC() {
           {({ location }) => (
             <Typography gutterBottom>Current route: {location.pathname}</Typography>
           )}
-        </Route> */}
+        </Route> */}`
         <Paper elevation={0}>
           <List aria-label="main mailbox folders">
             <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />

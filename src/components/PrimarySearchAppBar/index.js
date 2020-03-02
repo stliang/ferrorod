@@ -8,6 +8,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 // import SearchIcon from '@material-ui/icons/Search';
+
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
@@ -24,7 +25,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import LockOpen from '@material-ui/icons/LockOpen';
 // import MailIcon from '@material-ui/icons/Mail';
+// 
 
 import ListItemLink from '../ListItemLink';
 import * as ROUTES from '../Router/routes';
@@ -166,7 +170,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-
 const StyledMenu = withStyles({
     paper: {
         border: '1px solid #d3d4d5',
@@ -212,21 +215,23 @@ const PrimarySearchAppBar = (props) => {
             onKeyDown={toggleDrawer(side, false)}
         >
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ListItemLink to={ROUTES.LANDING.path} primary="Favorites" icon={<FavoriteBorder />} />
+                {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    // <ListItem button key={text}>
+                    //     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    //     <ListItemText primary={text} />
+                    // </ListItem>
+                ))} */}
             </List>
             <Divider />
             <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ListItemLink to={ROUTES.LANDING.path} primary="Favorites" icon={<FavoriteBorder />} />
+                {/* {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                    // <ListItem button key={text}>
+                    //     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    //     <ListItemText primary={text} />
+                    // </ListItem>
+                ))} */}
             </List>
         </div>
     );
@@ -295,17 +300,30 @@ const PrimarySearchAppBar = (props) => {
             id={menuId}
             keepMounted
             open={isMenuOpen}
-            // https://stackoverflow.com/questions/47873566/how-navigate-using-the-menuitem-material-ui-v1
-            //https://github.com/negomi/react-burger-menu/issues/56
-            // isOpen={ false }
-            // open={false}
             onClose={handleMenuClose}
         >
-            {/* <MenuItem component={ListItemLink} to={ROUTES.SIGN_IN.path} primary="Sign In" > */}
             <MenuItem onClick={handleMenuClose}>
-                <ListItemLink to={ROUTES.SIGN_IN.path} primary="Sign In"  />
+                <ListItemLink 
+                to={ROUTES.SIGN_IN.path} 
+                primary="Sign In" 
+                icon={<LockOpen/>}
+                style={{ backgroundColor: 'transparent' }}
+                disableRipple
+                disableTouchRipple
+                disableFocusRibble
+                />
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+                <ListItemLink 
+                to={ROUTES.LANDING.path} 
+                primary="Favorites" 
+                icon={<FavoriteBorder />}
+                style={{ backgroundColor: 'transparent' }}
+                disableRipple
+                disableTouchRipple
+                disableFocusRibble
+                />
+            </MenuItem>
         </StyledMenu>
     );
 
@@ -336,12 +354,6 @@ const PrimarySearchAppBar = (props) => {
                 </IconButton>
                 <p>Notifications</p>
             </MenuItem>
-            <MenuItem>
-                <IconButton aria-label="apps" color="inherit">
-                    <AppsIcon />
-                </IconButton>
-                <p>Apps</p>
-            </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
                     aria-label="account of current user"
@@ -362,7 +374,7 @@ const PrimarySearchAppBar = (props) => {
                 {sideList('left')}
             </Drawer>
             <AppBar position="fixed">
-                <Container maxWidth="lg">
+                <Container>
                     <Toolbar>
                         <IconButton
                             edge="start"
