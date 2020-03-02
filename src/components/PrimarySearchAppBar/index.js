@@ -3,17 +3,8 @@
 import React from 'react';
 import { AppBar, Badge, Container, IconButton, Menu, Toolbar, Typography } from '@material-ui/core';
 import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
-import AppsIcon from '@material-ui/icons/Apps';
 // import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
-import MenuIcon from '@material-ui/icons/Menu';
-// import SearchIcon from '@material-ui/icons/Search';
-
-import WhatshotIcon from '@material-ui/icons/Whatshot';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 
 
 // Drawer menu
@@ -24,9 +15,20 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import LockOpen from '@material-ui/icons/LockOpen';
+
+// import InboxIcon from '@material-ui/icons/MoveToInbox';
+// import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+// import LockOpen from '@material-ui/icons/LockOpen';
+import AppsIcon from '@material-ui/icons/Apps';
+import MenuIcon from '@material-ui/icons/Menu';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
+// import SearchIcon from '@material-ui/icons/Search';
+// import LandscapeOutlinedIcon from '@material-ui/icons/LandscapeOutlined';
+import {MoveToInbox as InboxIcon, LandscapeOutlined, FavoriteBorder, LockOpen, HomeOutlined} from '@material-ui/icons';
 // import MailIcon from '@material-ui/icons/Mail';
 // 
 
@@ -215,7 +217,7 @@ const PrimarySearchAppBar = (props) => {
             onKeyDown={toggleDrawer(side, false)}
         >
             <List>
-                <ListItemLink to={ROUTES.LANDING.path} primary="Favorites" icon={<FavoriteBorder />} />
+                <ListItemLink to={ROUTES.HOME.path} primary="Home" icon={<HomeOutlined />} />
                 {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     // <ListItem button key={text}>
                     //     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -225,7 +227,7 @@ const PrimarySearchAppBar = (props) => {
             </List>
             <Divider />
             <List>
-                <ListItemLink to={ROUTES.LANDING.path} primary="Favorites" icon={<FavoriteBorder />} />
+                <ListItemLink to={ROUTES.LANDING.path} primary="Landing" icon={<LandscapeOutlined />} />
                 {/* {['All mail', 'Trash', 'Spam'].map((text, index) => (
                     // <ListItem button key={text}>
                     //     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
