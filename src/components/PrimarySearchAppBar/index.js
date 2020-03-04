@@ -1,4 +1,7 @@
 // RETHINK NAVIGATION WITH https://material-ui.com/guides/composition/#link
+// BASIC LAYOUT https://blog.bitsrc.io/introducing-layout-for-material-ui-329043618cb3
+// https://github.com/siriwatknp/mui-treasury/tree/master/packages/mui-layout
+
 
 import React from 'react';
 import { AppBar, Badge, Container, IconButton, Menu, Toolbar, Typography } from '@material-ui/core';

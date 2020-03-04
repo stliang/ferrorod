@@ -6,6 +6,7 @@ import FirebaseContextProvider from './services/contexts/FirebaseContextProvider
 import UserContextProvider from './services/contexts/UserContextProvider';
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import Layout from './components/Layout';
+import POC from './scenes/POC';
 
 const App = props => (
     <FirebaseContextProvider>
@@ -18,7 +19,7 @@ const App = props => (
 );
 
 ReactDOM.render(
-    <App />,
+    <POC />,
     document.getElementById('root')
 );
 
