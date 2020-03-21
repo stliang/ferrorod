@@ -3,6 +3,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import Router from '../../../components/Router';
 
 const styles = ({ breakpoints }) => ({
   root: {
@@ -20,7 +21,8 @@ const styles = ({ breakpoints }) => ({
 
 const ContentEx = ({ classes }) => (
   <div className={classes.root}>
-    <Typography variant={"overline"}>INTRODUCING</Typography>
+    <Router />
+    {/* <Typography variant={"overline"}>INTRODUCING</Typography>
     <Typography weight={"bold"} variant={"h4"} gutterBottom>
       Material UI <Link underline={"none"}>Layout</Link>
     </Typography>
@@ -117,7 +119,7 @@ const ContentEx = ({ classes }) => (
     </Typography>
     <br />
     <br />
-    <br />
+    <br /> */}
   </div>
 );
 

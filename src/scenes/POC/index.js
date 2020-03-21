@@ -24,6 +24,8 @@ import {
   muiTreasuryPreset
 } from "@mui-treasury/layout/presets";
 
+import * as CONFIGS from './config/pocConfig';
+
 import NavContentEx from "./components/NavContentEx";
 import NavHeaderEx from "./components/NavHeaderEx";
 import HeaderEx from "./components/HeaderEx";
@@ -32,6 +34,8 @@ import ContentEx from "./components/ContentEx";
 import FooterEx from "./components/FooterEx";
 
 import "./styles.css";
+
+import pocConfig from './config/pocConfig';
 
 const presets = {
   createDefaultLayout: defaultLayoutPreset,
@@ -66,6 +70,7 @@ export default function POC() {
     </div>
   ) : (
     <Root config={presets[preset]}>
+    {/* <Root config={CONFIGS.pocConfig}> */}
       {({ headerStyles, sidebarStyles }) => (
         <>
           <CssBaseline />

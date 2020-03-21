@@ -12,14 +12,15 @@ const App = props => (
     <FirebaseContextProvider>
         <UserContextProvider>
             <MemoryRouter>
-                <Layout />
+                <POC />
+                {/* <Layout /> */}
             </MemoryRouter>
         </UserContextProvider>
     </FirebaseContextProvider>
 );
 
 ReactDOM.render(
-    <POC />,
+    <App />,
     document.getElementById('root')
 );
 

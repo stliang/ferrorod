@@ -13,6 +13,7 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-firebase-hooks": "^2.1.0",
+    "react-lottie": "^1.2.3",
     "react-router-dom": "^5.1.1",
     "react-scripts": "^3.3.0",
     "react-table": "7.0.0-rc.15",
