@@ -4,12 +4,16 @@ import Grid from '@material-ui/core/Grid';
 import * as demoConstants from './demoConstants'
 let watchAnimationData = require('./stopwatch.json')
 
+
 // https://stackoverflow.com/questions/58079525/how-to-show-page-after-animation-complete-with-lottie-and-javascript
 // https://www.freecodecamp.org/news/how-to-create-a-beautifully-animated-loader-in-react-native-21da37a8f6b0/
 // https://reactnative.dev/docs/modal#docsNav
-// https://programmingwithmosh.com/react/create-react-loading-spinner/
 
-function Logo() {
+// SAMPLE SPLASH PAGE
+// https://auth0.com/blog/creating-a-splash-screen-for-your-react-apps/
+// https://stackoverflow.com/questions/57709842/apploading-splashscreen-with-hooks
+
+const Logo = () => {
     const [playingState, setPlayingState] = useState('play')
     const [loopCounter, setLoopCounter] = useState(0)
     const [autoplay, setAutoplay] = useState(false)
@@ -44,10 +48,12 @@ function Logo() {
                 direction={direction}
                 eventListeners={[{
                     eventName: 'complete',
-                    callback: () => { console.log('completed') }
+                    callback: () => {
+                        console.log('completed');
+                    }
                 }]}
             />
-        </Grid>
+         </Grid>
     )
 }
 
