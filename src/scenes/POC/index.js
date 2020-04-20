@@ -36,6 +36,7 @@ import FooterEx from "./components/FooterEx";
 import "./styles.css";
 
 import pocConfig from './config/pocConfig';
+import { UserContext } from "../../services/contexts/UserContextProvider";
 
 const presets = {
   createDefaultLayout: defaultLayoutPreset,
@@ -50,7 +51,7 @@ const presets = {
 // <Root config={presets.createCozyLayout()}> ...
 export default function POC() {
   const [loading, setLoading] = useState(false);
-  const [preset, setPreset] = useState("createStandardLayout");
+  // const [preset, setPreset] = useState("createStandardLayout");
   const [data, setData] = useState({
     header: true,
     nav: true,
@@ -69,8 +70,9 @@ export default function POC() {
       <Typography variant={"h2"}>Changing Preset...</Typography>
     </div>
   ) : (
-    <Root config={presets[preset]}>
-    {/* <Root config={CONFIGS.pocConfig}> */}
+    <Root config={cozyLayoutPreset}>
+    {/* <Root config={presets[preset]}> */}
+    {/*  <Root config={CONFIGS.pocConfig}> */}
       {({ headerStyles, sidebarStyles }) => (
         <>
           <CssBaseline />
@@ -89,7 +91,7 @@ export default function POC() {
             </Toolbar>
           </Header>
           <Content>
-            <ContentForm
+            {/* <ContentForm
               preset={preset}
               onChangePreset={val => {
                 setLoading(true);
@@ -98,7 +100,7 @@ export default function POC() {
               }}
               data={data}
               onChangeData={setData}
-            />
+            /> */}
             {data.content && <ContentEx />}
           </Content>
           <Sidebar>
