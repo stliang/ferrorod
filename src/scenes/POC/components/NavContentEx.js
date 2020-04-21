@@ -10,7 +10,7 @@ import ListItemLink from '../../../components/ListItemLink';
 import * as ROUTES from '../../../components/Router/routes';
 import { UserContext } from "../../../services/contexts/UserContextProvider";
 
-const list = [
+const anonymousList = [
   {
     route: ROUTES.HOME.path,
     primaryText: "Home",
@@ -22,15 +22,13 @@ const list = [
     icon: "landscape"
   },
   {
-    route: ROUTES.SIGN_IN.path,
-    primaryText: "Face",
-    icon: "face"
-  },
-  {
-    route: ROUTES.HOME.path,
-    primaryText: "Recent",
+    route: ROUTES.ASSETS.path,
+    primaryText: "Schedule",
     icon: "schedule"
   },
+]
+
+const basicList = [
   {
     route: ROUTES.HOME.path,
     primaryText: "Offline",
@@ -43,8 +41,8 @@ const list = [
   },
   {
     route: ROUTES.HOME.path,
-    primaryText: "Backups",
-    icon: "backup"
+    primaryText: "Shipping",
+    icon: "local_shipping"
   },
   {
     route: ROUTES.HOME.path,
@@ -52,8 +50,16 @@ const list = [
     icon: "delete"
   }
 ];
+
 const NavContentEx = () => {
   const { user, initialising, error, login, logout } = useContext(UserContext);
+  const list = () => {
+    if (user) {
+      return anonymousList.concat(basicList)
+    } else {
+      return anonymousList
+    }
+  }
 
   const loginButton = () => {
     if (user) {
@@ -74,7 +80,7 @@ const NavContentEx = () => {
       return (
         <ListItem button onClick={login}>
           <ListItemIcon>
-            <Icon>lock</Icon>
+            <Icon>lock_open</Icon>
           </ListItemIcon>
           <ListItemText
             primary={"Login"}
@@ -87,29 +93,12 @@ const NavContentEx = () => {
 
   return (
     <List>
-      {list.map(({ route, primaryText, icon }, i) => (
+      {list().map(({ route, primaryText, icon }, i) => (
         <ListItemLink to={route} primary={primaryText} icon={<Icon>{icon}</Icon>} />
-        // <ListItem key={primaryText} selected={i === 0} button>
-        //   <ListItemIcon>
-        //     <Icon>{icon}</Icon>
-        //   </ListItemIcon>
-        //   <ListItemText
-        //     primary={primaryText}
-        //     primaryTypographyProps={{ noWrap: true }}
-        //   />
-        // </ListItem>
       ))}
       <Divider style={{ margin: "12px 0" }} />
       {loginButton()}
-      <ListItem button>
-        <ListItemIcon>
-          <Icon>settings</Icon>
-        </ListItemIcon>
-        <ListItemText
-          primary={"Settings & account"}
-          primaryTypographyProps={{ noWrap: true }}
-        />
-      </ListItem>
+      <ListItemLink to={ROUTES.ACCOUNT.path} primary={"Settings & account"} icon={<Icon>settings</Icon>} />
     </List>
   )
 };

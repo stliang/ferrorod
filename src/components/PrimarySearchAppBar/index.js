@@ -309,7 +309,7 @@ const PrimarySearchAppBar = (props) => {
         >
             <MenuItem onClick={handleMenuClose}>
                 <ListItemLink 
-                to={ROUTES.SIGN_IN.path} 
+                to={ROUTES.LANDING.path} 
                 primary="Sign In" 
                 icon={<LockOpen/>}
                 style={{ backgroundColor: 'transparent' }}
