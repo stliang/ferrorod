@@ -49,7 +49,7 @@ const presets = {
 
 // add presets.create{}() to config props in Root to change the behavior, looking and layout
 // <Root config={presets.createCozyLayout()}> ...
-export default function POC() {
+export default function Main() {
   const [loading, setLoading] = useState(false);
   // const [preset, setPreset] = useState("createStandardLayout");
   const [data, setData] = useState({

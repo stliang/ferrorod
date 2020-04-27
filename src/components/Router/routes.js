@@ -1,8 +1,7 @@
 import * as LEVEL from '../../security/roles'
 
-export const LANDING = { privileges: LEVEL.ANONYMOUS, path: '/' };
-// export const SIGN_IN = { privileges: LEVEL.ANONYMOUS, path: '/signin' };
-export const ASSETS = { privileges: LEVEL.BASIC, path: '/assets' };
-export const HOME = { privileges: LEVEL.BASIC, path: '/home' };
-export const ACCOUNT = { privileges: LEVEL.BASIC, path: '/account' };
-// export const ADMIN = { privileges: LEVEL.ADMIN, path: '/admin' };
+export const LANDING = { privileges: LEVEL.ANONYMOUS, path: '/' };       // Products and services
+export const NOTIFY = { privileges: LEVEL.BASIC, path: '/notify' };      // Notification preference
+export const SCHEDULE = { privileges: LEVEL.BASIC, path: '/schedule' };  // Inventory
+export const SETTINGS = { privileges: LEVEL.PAID, path: '/settings' };   // Marketing Campaign Settings
+export const USERS = { privileges: LEVEL.ADMIN, path: '/users' };        // User administration

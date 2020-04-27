@@ -6,7 +6,7 @@ import FirebaseContextProvider from './services/contexts/FirebaseContextProvider
 import UserContextProvider from './services/contexts/UserContextProvider';
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import Layout from './components/Layout';
-import POC from './scenes/POC';
+import Main from './scenes/Main';
 import Logo from './components/Logo';
 
 const App = props => (
@@ -14,7 +14,7 @@ const App = props => (
         <UserContextProvider>
             <MemoryRouter>
                 {/* <Logo /> */}
-                <POC />
+                <Main />
                 {/* <Layout /> */}
             </MemoryRouter>
         </UserContextProvider>

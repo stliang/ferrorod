@@ -12,54 +12,62 @@ import { UserContext } from "../../../services/contexts/UserContextProvider";
 
 const anonymousList = [
   {
-    route: ROUTES.HOME.path,
-    primaryText: "Home",
-    icon: "home"
-  },
-  {
     route: ROUTES.LANDING.path,
     primaryText: "Landing",
-    icon: "landscape"
-  },
-  {
-    route: ROUTES.ASSETS.path,
-    primaryText: "Schedule",
-    icon: "schedule"
-  },
+    icon: "home"
+  }
 ]
 
 const basicList = [
   {
-    route: ROUTES.HOME.path,
-    primaryText: "Offline",
-    icon: "offline_pin"
+    route: ROUTES.NOTIFY.path,
+    primaryText: "Notify",
+    icon: "notifications_none"
   },
   {
-    route: ROUTES.HOME.path,
-    primaryText: "Uploads",
-    icon: "publish"
-  },
+    route: ROUTES.SCHEDULE.path,
+    primaryText: "Schedule",
+    icon: "schedule"
+  }
+];
+
+const paidList = [
   {
-    route: ROUTES.HOME.path,
-    primaryText: "Shipping",
-    icon: "local_shipping"
-  },
+    route: ROUTES.SETTINGS.path,
+    primaryText: "Settings",
+    icon: "settings"
+  }
+];
+
+const adminList = [
   {
-    route: ROUTES.HOME.path,
-    primaryText: "Trash",
-    icon: "delete"
+    route: ROUTES.USERS.path,
+    primaryText: "Users",
+    icon: "people"
   }
 ];
 
 const NavContentEx = () => {
+  const { customClaims } = useContext(UserContext);
   const { user, initialising, error, login, logout } = useContext(UserContext);
   const list = () => {
     if (user) {
-      return anonymousList.concat(basicList)
+      if (customClaims.userRole == "admin") {
+        return anonymousList.concat(basicList).concat(paidList).concat(adminList)
+      } else {
+        return anonymousList.concat(basicList).concat(paidList)
+      }
     } else {
       return anonymousList
     }
   }
+  debugger
+
+  // export const LANDING = { privileges: LEVEL.ANONYMOUS, path: '/' };       // Products and services
+  // export const NOTIFY = { privileges: LEVEL.BASIC, path: '/notify' };      // Notification preference
+  // export const SCHEDULE = { privileges: LEVEL.BASIC, path: '/schedule' };  // Inventory
+  // export const SETTINGS = { privileges: LEVEL.PAID, path: '/settings' };   // Marketing Campaign Settings
+  // export const USERS = { privileges: LEVEL.ADMIN, path: '/users' };        // User administration
 
   const loginButton = () => {
     if (user) {
@@ -98,7 +106,6 @@ const NavContentEx = () => {
       ))}
       <Divider style={{ margin: "12px 0" }} />
       {loginButton()}
-      <ListItemLink to={ROUTES.ACCOUNT.path} primary={"Settings & account"} icon={<Icon>settings</Icon>} />
     </List>
   )
 };

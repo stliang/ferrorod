@@ -220,7 +220,7 @@ const PrimarySearchAppBar = (props) => {
             onKeyDown={toggleDrawer(side, false)}
         >
             <List>
-                <ListItemLink to={ROUTES.HOME.path} primary="Home" icon={<HomeOutlined />} />
+                <ListItemLink to={ROUTES.LANDING.path} primary="Landing" icon={<HomeOutlined />} />
                 {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     // <ListItem button key={text}>
                     //     <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>

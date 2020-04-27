@@ -2,11 +2,9 @@ import React from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import EnhancedTable from './components/UserTable/EnhancedTable';
-// import PrimarySearchAppBar from './PrimarySearchAppBar';
 import makeData from './makeData';
-// import { AssetsPage } from '../pages';
 
-const Account = () => {
+const Users = () => {
     const columns = React.useMemo(
         () => [
             {
@@ -76,4 +74,4 @@ const Account = () => {
     )
 }
 
-export default Account
+export default Users

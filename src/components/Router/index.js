@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { UserContext } from '../../services/contexts/UserContextProvider';
 import * as ROUTES from './routes';
-// import { AccountPage, AdminPage, AssetsPage, HomePage, LandingPage, SignInPage } from '../../scenes/pages';
-import { AssetsPage, HomePage, LandingPage, AccountPage } from '../../scenes/pages';
+import { LandingPage, NotifyPage, SchedulePage, SettingsPage, UsersPage } from '../../scenes/pages';
 
 const PrivilegedRoute = ({ component: Component, privileges, ...rest }) => {
     const { customClaims } = useContext(UserContext);
@@ -26,13 +25,11 @@ const Router = () => {
     return (
         <Switch>
             <PrivilegedRoute exact path={ROUTES.LANDING.path} privileges={ROUTES.LANDING.privileges} component={LandingPage} />
-            <PrivilegedRoute path={ROUTES.HOME.path} privileges={ROUTES.HOME.privileges} component={HomePage} />
-            <PrivilegedRoute path={ROUTES.ASSETS.path} privileges={ROUTES.ASSETS.privileges} component={AssetsPage} />
-            <PrivilegedRoute path={ROUTES.ACCOUNT.path} privileges={ROUTES.ACCOUNT.privileges} component={AccountPage} />
-            {/* <PrivilegedRoute path={ROUTES.SIGN_IN.path} privileges={ROUTES.SIGN_IN.privileges} component={SignInPage} /> */}
-            {/* <PrivilegedRoute path={ROUTES.ADMIN.path} privileges={ROUTES.ADMIN.privileges} component={AdminPage} /> */}
+            <PrivilegedRoute path={ROUTES.NOTIFY.path} privileges={ROUTES.NOTIFY.privileges} component={NotifyPage} />
+            <PrivilegedRoute path={ROUTES.SCHEDULE.path} privileges={ROUTES.SCHEDULE.privileges} component={SchedulePage} />
+            <PrivilegedRoute path={ROUTES.SETTINGS.path} privileges={ROUTES.SETTINGS.privileges} component={SettingsPage} />
+            <PrivilegedRoute path={ROUTES.USERS.path} privileges={ROUTES.USERS.privileges} component={UsersPage} />
         </Switch>
     )
 }
-
 export default Router;

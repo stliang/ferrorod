@@ -1,13 +1,12 @@
 import React from 'react';
 import withRoot from '../../withRoot';
-import Assets from '../Assets';
 
-const Home = () => {
+const Notify = () => {
   return (
     <React.Fragment>
-      <Assets />
+      <h1>Notify</h1>
     </React.Fragment>
   );
 }
 
-export default withRoot(Home);
+export default withRoot(Notify);
