@@ -7,7 +7,7 @@ import Icon from "@material-ui/core/Icon";
 import Divider from "@material-ui/core/Divider";
 
 import ListItemLink from '../../../components/ListItemLink';
-import * as ROUTES from '../../../components/Router/routes';
+import * as ROUTES from '../../components/Router/routes';
 import { UserContext } from "../../../services/contexts/UserContextProvider";
 
 const anonymousList = [
@@ -28,6 +28,11 @@ const basicList = [
     route: ROUTES.SCHEDULE.path,
     primaryText: "Schedule",
     icon: "schedule"
+  },
+  {
+    route: ROUTES.ASSETS.path,
+    primaryText: "Assets",
+    icon: "category"
   }
 ];
 

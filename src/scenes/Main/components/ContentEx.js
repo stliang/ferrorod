@@ -3,7 +3,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import Router from '../../../components/Router';
+import Router from '../../components/Router';
 
 const styles = ({ breakpoints }) => ({
   root: {

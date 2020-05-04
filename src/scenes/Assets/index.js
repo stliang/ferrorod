@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import EnhancedTable from './components/UserTable/EnhancedTable';
 import makeData from './makeData';
 
-const Account = () => {
+const Assets = () => {
     const columns = React.useMemo(
         () => [
             {
@@ -74,4 +74,4 @@ const Account = () => {
     )
 }
 
-export default Account
+export default Assets

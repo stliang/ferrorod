@@ -1,9 +1,9 @@
 import React from 'react';
-import Nav from '../Nav'
+// import Nav from '../../../components/Nav'
 import Router from '../Router';
-import Hero from '../Hero';
-import AppFooter from '../AppFooter';
-import PrimarySearchAppBar from '../PrimarySearchAppBar';
+import Hero from '../../../components/Hero';
+import AppFooter from '../../../components/AppFooter';
+import PrimarySearchAppBar from '../../../components/PrimarySearchAppBar';
 // import POC from '../../scenes/POC';
 
 

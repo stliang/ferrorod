@@ -1,49 +1,49 @@
-// DELETE THIS FILE
+// // DELETE THIS FILE
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import * as ROUTES from '../Router';
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+// import * as ROUTES from '../Router';
 
-const Nav = () => {
-    return (
-        <div>I AM HERE</div>
-    //     <Navbar
-    //         fixed='top'
-    //         active={false}
-    //         transparent={false}
-    //     >
-    //         <Navbar.Brand>
-    //             <Navbar.Item renderAs="a" href="#">
-    //                 <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
-    //             </Navbar.Item>
-    //             <Navbar.Burger />
-    //         </Navbar.Brand>
-    //         <Navbar.Menu>
-    //             <Navbar.Container>
-    //                 <Navbar.Item dropdown hoverable href="#">
-    //                     <Navbar.Link arrowless={false}>
-    //                         Analytics
-    //                     </Navbar.Link>
-    //                     <Navbar.Dropdown>
-    //                         <Navbar.Item to={ROUTES.ASSETS.path} renderAs={Link}>
-    //                             Assets
-    //                         </Navbar.Item>
-    //                         <Navbar.Item href="#">
-    //                             Cash Flow
-    //                         </Navbar.Item>
-    //                     </Navbar.Dropdown>
-    //                 </Navbar.Item>
-    //                 <Navbar.Item to={ROUTES.LANDING.path} renderAs={Link}>Landing</Navbar.Item>
-    //                 <Navbar.Item to={ROUTES.HOME.path} renderAs={Link}>Home</Navbar.Item>
-    //                 <Navbar.Item to={ROUTES.ACCOUNT.path} renderAs={Link}>Account</Navbar.Item>
-    //                 <Navbar.Item to={ROUTES.ADMIN.path} renderAs={Link}>Admin</Navbar.Item>
-    //             </Navbar.Container>
-    //             <Navbar.Container position="end">
-    //                 <Navbar.Item to={ROUTES.SIGN_IN.path} renderAs={Link}>Sign In</Navbar.Item>
-    //             </Navbar.Container>
-    //         </Navbar.Menu>
-    //     </Navbar>
-    );
-}
+// const Nav = () => {
+//     return (
+//         <div>I AM HERE</div>
+//     //     <Navbar
+//     //         fixed='top'
+//     //         active={false}
+//     //         transparent={false}
+//     //     >
+//     //         <Navbar.Brand>
+//     //             <Navbar.Item renderAs="a" href="#">
+//     //                 <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
+//     //             </Navbar.Item>
+//     //             <Navbar.Burger />
+//     //         </Navbar.Brand>
+//     //         <Navbar.Menu>
+//     //             <Navbar.Container>
+//     //                 <Navbar.Item dropdown hoverable href="#">
+//     //                     <Navbar.Link arrowless={false}>
+//     //                         Analytics
+//     //                     </Navbar.Link>
+//     //                     <Navbar.Dropdown>
+//     //                         <Navbar.Item to={ROUTES.ASSETS.path} renderAs={Link}>
+//     //                             Assets
+//     //                         </Navbar.Item>
+//     //                         <Navbar.Item href="#">
+//     //                             Cash Flow
+//     //                         </Navbar.Item>
+//     //                     </Navbar.Dropdown>
+//     //                 </Navbar.Item>
+//     //                 <Navbar.Item to={ROUTES.LANDING.path} renderAs={Link}>Landing</Navbar.Item>
+//     //                 <Navbar.Item to={ROUTES.HOME.path} renderAs={Link}>Home</Navbar.Item>
+//     //                 <Navbar.Item to={ROUTES.ACCOUNT.path} renderAs={Link}>Account</Navbar.Item>
+//     //                 <Navbar.Item to={ROUTES.ADMIN.path} renderAs={Link}>Admin</Navbar.Item>
+//     //             </Navbar.Container>
+//     //             <Navbar.Container position="end">
+//     //                 <Navbar.Item to={ROUTES.SIGN_IN.path} renderAs={Link}>Sign In</Navbar.Item>
+//     //             </Navbar.Container>
+//     //         </Navbar.Menu>
+//     //     </Navbar>
+//     );
+// }
 
-export default Nav;
+// export default Nav;
