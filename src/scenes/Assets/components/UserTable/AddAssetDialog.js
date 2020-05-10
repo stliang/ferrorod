@@ -13,27 +13,26 @@ import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const initialUser = {
-    firstName: '',
-    lastName: '',
-    age: 0,
-    visits: 0,
-    status: 'single',
-    progress: 0,
+const initialValue = {
+    asset: '',
+    cost: 0,
+    price: 0,
+    quantity: 0,
+    status: '',
     subRows: undefined
 }
 
-const AddUserDialog = props => {
-    const [user, setUser] = useState(initialUser);
-    const { addUserHandler } = props;
+const AddAssetDialog = props => {
+    const [row, setRow] = useState(initialValue);
+    const { addRowHandler } = props;
     const [open, setOpen] = React.useState(false);
 
     const [switchState, setSwitchState] = React.useState({
         addMultiple: false
     });
 
-    const handleSwitchChange = name => event => {
-        setSwitchState({ ...switchState, [name]: event.target.checked });
+    const handleSwitchChange = key => event => {
+        setSwitchState({ ...switchState, [key]: event.target.checked });
     };
 
     const resetSwitch = () => {
@@ -50,13 +49,13 @@ const AddUserDialog = props => {
     };
 
     const handleAdd = (event) => {
-        addUserHandler(user);
-        setUser(initialUser);
+        addRowHandler(row);
+        setRow(initialValue);
         switchState.addMultiple ? setOpen(true) : setOpen(false);
     };
 
-    const handleChange = name => ({ target: { value } }) => {
-        setUser({ ...user, [name]: value });
+    const handleChange = key => ({ target: { value } }) => {
+        setRow({ ...row, [key]: value });
     }
 
     return (
@@ -67,7 +66,7 @@ const AddUserDialog = props => {
                 </IconButton>
             </Tooltip>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Add User</DialogTitle>
+                <DialogTitle id="form-dialog-title">Add Row</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Demo add item to react table.
@@ -75,51 +74,43 @@ const AddUserDialog = props => {
                     <TextField
                         autoFocus
                         margin="dense"
-                        label="First Name"
+                        label="Asset"
                         type="text"
                         fullWidth
-                        value={user.firstName}
-                        onChange={handleChange('firstName')}
+                        value={row.asset}
+                        onChange={handleChange('asset')}
                     />
                     <TextField
                         margin="dense"
-                        label="Last Name"
-                        type="text"
-                        fullWidth
-                        value={user.lastName}
-                        onChange={handleChange('lastName')}
-                    />
-                    <TextField
-                        margin="dense"
-                        label="Age"
+                        label="Cost"
                         type="number"
                         fullWidth
-                        value={user.age}
-                        onChange={handleChange('age')}
+                        value={row.cost}
+                        onChange={handleChange('cost')}
                     />
                     <TextField
                         margin="dense"
-                        label="Visits"
+                        label="Price"
                         type="number"
                         fullWidth
-                        value={user.visits}
-                        onChange={handleChange('visits')}
+                        value={row.price}
+                        onChange={handleChange('price')}
+                    />
+                    <TextField
+                        margin="dense"
+                        label="Quantity"
+                        type="number"
+                        fullWidth
+                        value={row.quantity}
+                        onChange={handleChange('quantity')}
                     />
                     <TextField
                         margin="dense"
                         label="Status"
                         type="text"
                         fullWidth
-                        value={user.status}
+                        value={row.status}
                         onChange={handleChange('status')}
-                    />
-                    <TextField
-                        margin="dense"
-                        label="Profile Progress"
-                        type="number"
-                        fullWidth
-                        value={user.progress}
-                        onChange={handleChange('progress')}
                     />
                 </DialogContent>
                 <DialogActions>
@@ -143,8 +134,8 @@ const AddUserDialog = props => {
     );
 }
 
-AddUserDialog.propTypes = {
-    addUserHandler: PropTypes.func.isRequired
+AddAssetDialog.propTypes = {
+    addRowHandler: PropTypes.func.isRequired
 };
 
-export default AddUserDialog;
+export default AddAssetDialog;

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import AddUserDialog from './AddUserDialog';
+import AddAssetDialog from './AddAssetDialog';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import GlobalFilter from './GlobalFilter';
@@ -41,7 +41,7 @@ const TableToolbar = props => {
                 [classes.highlight]: numSelected > 0,
             })}
         >
-            <AddUserDialog addUserHandler={addUserHandler} />
+            <AddAssetDialog addRowHandler={addUserHandler} />
             {numSelected > 0 ? (
                 <Typography className={classes.title} color="inherit" variant="subtitle1">
                     {numSelected} selected

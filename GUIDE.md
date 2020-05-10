@@ -62,5 +62,7 @@ The saveRow function uses Promise.then() approch.  We can also use the async/awa
     }
 ```
 
+# To Secure DB query
+https://firebase.google.com/docs/firestore/security/rules-query
 
 
