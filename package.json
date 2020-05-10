@@ -6,6 +6,7 @@
     "@material-ui/core": "^4.8.0",
     "@material-ui/icons": "^4.5.1",
     "@mui-treasury/layout": "^3.3.3",
+    "crocks": "^0.12.4",
     "firebase": "^7.0.0",
     "lodash": "^4.17.15",
     "lottie-web-react": "^1.0.3",
@@ -18,7 +19,7 @@
     "react-scripts": "^3.3.0",
     "react-spring": "^8.0.27",
     "react-table": "7.0.0-rc.15",
-    "uuid": "^3.3.3"
+    "uuid": "^8.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

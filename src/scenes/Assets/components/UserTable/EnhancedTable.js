@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Checkbox from '@material-ui/core/Checkbox';
 import MaUTable from '@material-ui/core/Table';
@@ -14,6 +14,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TableToolbar from './TableToolbar';
 import { useGlobalFilter, usePagination, useRowSelect, useSortBy, useTable } from 'react-table';
+import { FirebaseContext } from '../../../../services/contexts/FirebaseContextProvider'
+import { v4 as uuidv4 } from 'uuid';
 
 const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
@@ -69,10 +71,10 @@ const EditableCell = ({
 EditableCell.propTypes = {
     cell: PropTypes.shape({
         value: PropTypes.any.isRequired
-    }),    
+    }),
     row: PropTypes.shape({
         index: PropTypes.number.isRequired
-    }),   
+    }),
     column: PropTypes.shape({
         id: PropTypes.number.isRequired
     }),
@@ -85,6 +87,21 @@ const defaultColumn = {
 }
 
 const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) => {
+    const { firebaseInstance } = useContext(FirebaseContext)
+    const saveRow = (row, tableName) => {
+        const uuid = uuidv4();
+        firebaseInstance
+            .firestore()
+            .collection(tableName)
+            .doc(uuid)
+            .set(row)
+            .then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+    }
     const {
         getTableProps,
         headerGroups,
@@ -160,6 +177,8 @@ const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) 
     const addUserHandler = (user) => {
         const newData = data.concat([user]);
         setData(newData);
+        delete user.subRows
+        saveRow(user, 'assets')
     };
 
     // Render the UI for your table
