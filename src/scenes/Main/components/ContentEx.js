@@ -10,11 +10,11 @@ const styles = ({ breakpoints }) => ({
     padding: 16,
     [breakpoints.up("sm")]: {
       padding: 24,
-      maxWidth: 900,
+      maxWidth: 700,
       margin: "auto"
     },
     [breakpoints.up("md")]: {
-      maxWidth: 700
+      maxWidth: 1200
     }
   }
 });

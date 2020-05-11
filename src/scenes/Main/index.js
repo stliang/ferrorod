@@ -92,12 +92,12 @@ export default function Main() {
           </Header>
           <Content>
             {/* <ContentForm
-              preset={preset}
-              onChangePreset={val => {
-                setLoading(true);
-                setPreset(val);
-                setTimeout(() => setLoading(false), 500);
-              }}
+              // preset={preset}
+              // onChangePreset={val => {
+              //   setLoading(true);
+              //   setPreset(val);
+              //   setTimeout(() => setLoading(false), 500);
+              // }}
               data={data}
               onChangeData={setData}
             /> */}
