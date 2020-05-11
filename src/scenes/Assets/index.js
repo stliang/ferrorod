@@ -28,10 +28,6 @@ const Assets = () => {
     const columns = React.useMemo(
         () => [
             {
-                Header: 'Status',
-                accessor: 'status',
-            },
-            {
                 Header: 'Asset',
                 accessor: 'asset',
             },
@@ -46,6 +42,10 @@ const Assets = () => {
             {
                 Header: 'Quantity',
                 accessor: 'quantity',
+            },
+            {
+                Header: 'Status',
+                accessor: 'status',
             },
         ],
         []
