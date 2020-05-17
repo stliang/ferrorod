@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 
 const AddRowDialog = props => {
-    const { addRowHandler, initialValue, textFields } = props;
+    const { addRowHandler, initialValue, textFields, title } = props;
     const [row, setRow] = useState(initialValue);
     const [open, setOpen] = React.useState(false);
 
@@ -57,61 +57,20 @@ const AddRowDialog = props => {
                 </IconButton>
             </Tooltip>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Add User</DialogTitle>
+                <DialogTitle id="form-dialog-title">{ title }</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Demo add item to react table.
                         </DialogContentText>
-                        {/* textFields.map(...) */}
-                    {/* <TextField
-                        autoFocus
-                        margin="dense"
-                        label="First Name"
-                        type="text"
-                        fullWidth
-                        value={user.firstName}
-                        onChange={handleChange('firstName')}
-                    />
-                    <TextField
-                        margin="dense"
-                        label="Last Name"
-                        type="text"
-                        fullWidth
-                        value={user.lastName}
-                        onChange={handleChange('lastName')}
-                    />
-                    <TextField
-                        margin="dense"
-                        label="Age"
-                        type="number"
-                        fullWidth
-                        value={user.age}
-                        onChange={handleChange('age')}
-                    />
-                    <TextField
-                        margin="dense"
-                        label="Visits"
-                        type="number"
-                        fullWidth
-                        value={user.visits}
-                        onChange={handleChange('visits')}
-                    />
-                    <TextField
-                        margin="dense"
-                        label="Status"
-                        type="text"
-                        fullWidth
-                        value={user.status}
-                        onChange={handleChange('status')}
-                    />
-                    <TextField
-                        margin="dense"
-                        label="Profile Progress"
-                        type="number"
-                        fullWidth
-                        value={user.progress}
-                        onChange={handleChange('progress')}
-                    /> */}
+                    {textFields.map(field =>
+                        <TextField
+                            margin="dense"
+                            label={field.label}
+                            type={field.type}
+                            fullWidth
+                            value={row[field.accessor]}
+                            onChange={handleChange(field.accessor)}
+                        />)}
                 </DialogContent>
                 <DialogActions>
                     <Tooltip title="Add multiple">
@@ -134,10 +93,17 @@ const AddRowDialog = props => {
     );
 }
 
-AddUserDialog.propTypes = {
+AddRowDialog.propTypes = {
     addRowHandler: PropTypes.func.isRequired,
     initialValue: PropTypes.object.isRequired,
-    textFields: PropTypes.arrayOf(PropTypes.object).isRequired
+    textFields: PropTypes.arrayOf(
+        PropTypes.exact({
+            accessor: PropTypes.string,
+            label: PropTypes.string,
+            type: PropTypes.string
+        })
+    ).isRequired,
+    title: PropTypes.string.isRequired
 };
 
 export default AddRowDialog;

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import AddAssetDialog from './AddAssetDialog';
+import AddRowDialog from '../../AddRowDialog';
 import clsx from 'clsx';
 import DeleteIcon from '@material-ui/icons/Delete';
 import GlobalFilter from './GlobalFilter';
@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import * as CONFIG from './config';
 
 const useToolbarStyles = makeStyles(theme => ({
     root: {
@@ -34,22 +35,27 @@ const useToolbarStyles = makeStyles(theme => ({
 
 const TableToolbar = props => {
     const classes = useToolbarStyles();
-    const { numSelected, addUserHandler, deleteUserHandler, preGlobalFilteredRows, setGlobalFilter, globalFilter } = props;
+    const { addUserHandler, deleteUserHandler, globalFilter, numSelected, preGlobalFilteredRows, setGlobalFilter, title} = props;
     return (
         <Toolbar
             className={clsx(classes.root, {
                 [classes.highlight]: numSelected > 0,
             })}
         >
-            <AddAssetDialog addRowHandler={addUserHandler} />
+            <AddRowDialog
+                addRowHandler={addUserHandler}
+                initialValue={CONFIG.initialValue}
+                textFields={CONFIG.addDialogUIConfig.textFields}
+                title={CONFIG.addDialogUIConfig.title}
+            />
             {numSelected > 0 ? (
                 <Typography className={classes.title} color="inherit" variant="subtitle1">
                     {numSelected} selected
-          </Typography>
+                </Typography>
             ) : (
                     <Typography className={classes.title} variant="h6" id="tableTitle">
-                        Users
-          </Typography>
+                        {title}
+                    </Typography>
                 )}
 
             {numSelected > 0 ? (
@@ -76,6 +82,7 @@ TableToolbar.propTypes = {
     setGlobalFilter: PropTypes.func.isRequired,
     preGlobalFilteredRows: PropTypes.array.isRequired,
     globalFilter: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
 };
 
 

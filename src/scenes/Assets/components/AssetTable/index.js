@@ -9,12 +9,13 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
-import TablePaginationActions from './TablePaginationActions';
+import TablePaginationActions from './components/TablePaginationActions';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import TableToolbar from './TableToolbar';
-import { useGlobalFilter, usePagination, useRowSelect, useSortBy, useTable } from 'react-table';
+import TableToolbar from './components/TableToolbar';
+import * as CONFIG from './config'
 import { FirebaseContext } from '../../../../services/contexts/FirebaseContextProvider'
+import { useGlobalFilter, usePagination, useRowSelect, useSortBy, useTable } from 'react-table';
 import { v4 as uuidv4 } from 'uuid';
 
 const IndeterminateCheckbox = React.forwardRef(
@@ -86,7 +87,7 @@ const defaultColumn = {
     Cell: EditableCell,
 }
 
-const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) => {
+const AssetTable = ({ columns, data, setData, updateMyData, skipPageReset }) => {
     const { firebaseInstance } = useContext(FirebaseContext)
     const saveRow = (row, tableName) => {
         const uuid = uuidv4();
@@ -192,6 +193,7 @@ const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) 
                 setGlobalFilter={setGlobalFilter}
                 globalFilter={globalFilter}
                 addUserHandler={addUserHandler}
+                title={CONFIG.title}
             />
             <MaUTable {...getTableProps()}>
                 <TableHead>
@@ -250,7 +252,7 @@ const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) 
     )
 }
 
-EnhancedTable.propTypes = {
+AssetTable.propTypes = {
     columns: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
     updateMyData: PropTypes.func.isRequired,
@@ -258,4 +260,4 @@ EnhancedTable.propTypes = {
     skipPageReset: PropTypes.bool.isRequired,
 };
 
-export default EnhancedTable;
+export default AssetTable;

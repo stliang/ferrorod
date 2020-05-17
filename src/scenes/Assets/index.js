@@ -1,15 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 
+import AssetTable from './components/AssetTable';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import EnhancedTable from './components/UserTable/EnhancedTable';
-import makeData from './makeData';
 import { FirebaseContext } from '../../services/contexts/FirebaseContextProvider'
+import { headers } from './config'
 
 const Assets = () => {
     const { firebaseInstance } = useContext(FirebaseContext)
     const getRows = (tableName) => {
         debugger
-        // infinit loop here
         firebaseInstance
             .firestore()
             .collection(tableName)
@@ -26,28 +25,7 @@ const Assets = () => {
             });
     }
     const columns = React.useMemo(
-        () => [
-            {
-                Header: 'Asset',
-                accessor: 'asset',
-            },
-            {
-                Header: 'Cost',
-                accessor: 'cost',
-            },
-            {
-                Header: 'Price',
-                accessor: 'price',
-            },
-            {
-                Header: 'Quantity',
-                accessor: 'quantity',
-            },
-            {
-                Header: 'Status',
-                accessor: 'status',
-            },
-        ],
+        () => headers,
         []
     )
 
@@ -60,7 +38,7 @@ const Assets = () => {
 
     useEffect(() => {
         getRows('assets')
-      }, []);
+    }, []);
 
     // We need to keep the table from resetting the pageIndex when we
     // Update data. So we can keep track of that flag with a ref.
@@ -87,7 +65,7 @@ const Assets = () => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <EnhancedTable
+            <AssetTable
                 columns={columns}
                 data={data}
                 setData={setData}
