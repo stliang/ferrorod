@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 
-import AssetTable from './components/AssetTable';
+import MuiReactTable from './components/MuiReactTable';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { FirebaseContext } from '../../services/contexts/FirebaseContextProvider'
 import { headers } from './config'
@@ -65,7 +65,7 @@ const Assets = () => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <AssetTable
+            <MuiReactTable
                 columns={columns}
                 data={data}
                 setData={setData}

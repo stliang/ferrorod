@@ -87,7 +87,7 @@ const defaultColumn = {
     Cell: EditableCell,
 }
 
-const AssetTable = ({ columns, data, setData, updateMyData, skipPageReset }) => {
+const MuiReactTable = ({ columns, data, setData, updateMyData, skipPageReset }) => {
     const { firebaseInstance } = useContext(FirebaseContext)
     const saveRow = (row, tableName) => {
         const uuid = uuidv4();
@@ -252,7 +252,7 @@ const AssetTable = ({ columns, data, setData, updateMyData, skipPageReset }) => 
     )
 }
 
-AssetTable.propTypes = {
+MuiReactTable.propTypes = {
     columns: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
     updateMyData: PropTypes.func.isRequired,
@@ -260,4 +260,4 @@ AssetTable.propTypes = {
     skipPageReset: PropTypes.bool.isRequired,
 };
 
-export default AssetTable;
+export default MuiReactTable;
