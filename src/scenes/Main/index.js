@@ -24,12 +24,12 @@ import {
   muiTreasuryPreset
 } from "@mui-treasury/layout/presets";
 
-import * as CONFIGS from './config/pocConfig';
+// import * as CONFIGS from './config/pocConfig';
 
 import NavContentEx from "./components/NavContentEx";
 import NavHeaderEx from "./components/NavHeaderEx";
 import HeaderEx from "./components/HeaderEx";
-import ContentForm from "./components/ContentForm";
+// import ContentForm from "./components/ContentForm";
 import ContentEx from "./components/ContentEx";
 import FooterEx from "./components/FooterEx";
 
@@ -91,16 +91,6 @@ export default function Main() {
             </Toolbar>
           </Header>
           <Content>
-            {/* <ContentForm
-              // preset={preset}
-              // onChangePreset={val => {
-              //   setLoading(true);
-              //   setPreset(val);
-              //   setTimeout(() => setLoading(false), 500);
-              // }}
-              data={data}
-              onChangeData={setData}
-            /> */}
             {data.content && <ContentEx />}
           </Content>
           <Sidebar>

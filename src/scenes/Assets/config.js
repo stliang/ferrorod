@@ -26,4 +26,13 @@ export const fields = [
     }
 ]
 
-export const headers = fields.map(o => {return {Header: o.label, accessor: o.accessor}})
+export const initialValue = {
+    asset: '',
+    cost: 0,
+    price: 0,
+    quantity: 0,
+    status: '',
+    subRows: undefined
+}
+
+export const tableName = 'Assets'

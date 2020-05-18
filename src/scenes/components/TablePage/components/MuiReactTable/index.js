@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Checkbox from '@material-ui/core/Checkbox';
 import MaUTable from '@material-ui/core/Table';
@@ -9,11 +9,20 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
-import TablePaginationActions from './TablePaginationActions';
+import TablePaginationActions from './components/TablePaginationActions';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import TableToolbar from './TableToolbar';
+import TableToolbar from './components/TableToolbar';
+import { FirebaseContext } from '../../../../../services/contexts/FirebaseContextProvider'
 import { useGlobalFilter, usePagination, useRowSelect, useSortBy, useTable } from 'react-table';
+import { v4 as uuidv4 } from 'uuid';
+
+const inputStyle = {
+    padding: 0,
+    margin: 0,
+    border: 0,
+    background: 'transparent',
+};
 
 const IndeterminateCheckbox = React.forwardRef(
     ({ indeterminate, ...rest }, ref) => {
@@ -32,19 +41,12 @@ const IndeterminateCheckbox = React.forwardRef(
     }
 )
 
-const inputStyle = {
-    padding: 0,
-    margin: 0,
-    border: 0,
-    background: 'transparent',
-};
-
 // Create an editable cell renderer
 const EditableCell = ({
     cell: { value: initialValue },
     row: { index },
     column: { id },
-    updateMyData, // This is a custom function that we supplied to our table instance
+    updateCell, // This is a custom function that we supplied to our table instance
 }) => {
     // We need to keep and update the state of the cell normally
     const [value, setValue] = React.useState(initialValue)
@@ -55,7 +57,7 @@ const EditableCell = ({
 
     // We'll only update the external data when the input is blurred
     const onBlur = () => {
-        updateMyData(index, id, value)
+        updateCell(index, id, value)
     }
 
     // If the initialValue is changed externall, sync it up with our state
@@ -69,14 +71,14 @@ const EditableCell = ({
 EditableCell.propTypes = {
     cell: PropTypes.shape({
         value: PropTypes.any.isRequired
-    }),    
+    }),
     row: PropTypes.shape({
         index: PropTypes.number.isRequired
-    }),   
+    }),
     column: PropTypes.shape({
         id: PropTypes.number.isRequired
     }),
-    updateMyData: PropTypes.func.isRequired
+    updateCell: PropTypes.func.isRequired
 };
 
 // Set our editable cell renderer as the default Cell renderer
@@ -84,7 +86,31 @@ const defaultColumn = {
     Cell: EditableCell,
 }
 
-const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) => {
+const MuiReactTable = ({
+    data,
+    columns,
+    fields,
+    initialValue,
+    setData,
+    skipPageReset,
+    updateCell,
+    tableName
+}) => {
+    const { firebaseInstance } = useContext(FirebaseContext)
+    const saveRow = (row) => {
+        const uuid = uuidv4();
+        firebaseInstance
+            .firestore()
+            .collection(tableName)
+            .doc(uuid)
+            .set(row)
+            .then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+    }
     const {
         getTableProps,
         headerGroups,
@@ -102,12 +128,12 @@ const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) 
             data,
             defaultColumn,
             autoResetPage: !skipPageReset,
-            // updateMyData isn't part of the API, but
+            // updateCell isn't part of the API, but
             // anything we put into these options will
             // automatically be available on the instance.
             // That way we can call this function from our
             // cell renderer!
-            updateMyData,
+            updateCell,
         },
         useGlobalFilter,
         useSortBy,
@@ -152,27 +178,31 @@ const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) 
 
     const removeByIndexs = (array, indexs) => array.filter((_, i) => !indexs.includes(i));
 
-    const deleteUserHandler = (event) => {
+    const deleteRowHandler = (event) => {
         const newData = removeByIndexs(data, Object.keys(selectedRowIds).map(x => parseInt(x, 10)));
         setData(newData);
     };
 
-    const addUserHandler = (user) => {
-        const newData = data.concat([user]);
+    const addRowHandler = (row) => {
+        const newData = data.concat([row]);
         setData(newData);
+        delete row.subRows
+        saveRow(row)
     };
 
     // Render the UI for your table
     return (
         <TableContainer>
             <TableToolbar
+                addRowHandler={addRowHandler}
+                deleteRowHandler={deleteRowHandler}
+                fields={fields}
+                globalFilter={globalFilter}
+                initialValue={initialValue}
                 numSelected={Object.keys(selectedRowIds).length}
-                deleteUserHandler={deleteUserHandler}
-                addUserHandler={addUserHandler}
                 preGlobalFilteredRows={preGlobalFilteredRows}
                 setGlobalFilter={setGlobalFilter}
-                globalFilter={globalFilter}
-                addUserHandler={addUserHandler}
+                tableName={tableName}
             />
             <MaUTable {...getTableProps()}>
                 <TableHead>
@@ -207,7 +237,6 @@ const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) 
                         )
                     })}
                 </TableBody>
-
                 <TableFooter>
                     <TableRow>
                         <TablePagination
@@ -231,12 +260,21 @@ const EnhancedTable = ({ columns, data, setData, updateMyData, skipPageReset }) 
     )
 }
 
-EnhancedTable.propTypes = {
+MuiReactTable.propTypes = {
     columns: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
-    updateMyData: PropTypes.func.isRequired,
+    fields: PropTypes.arrayOf(
+        PropTypes.exact({
+            accessor: PropTypes.string.isRequired,
+            label: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired
+        })
+    ).isRequired,
+    initialValue: PropTypes.object.isRequired,
     setData: PropTypes.func.isRequired,
     skipPageReset: PropTypes.bool.isRequired,
+    updateCell: PropTypes.func.isRequired,
+    tableName: PropTypes.string.isRequired
 };
 
-export default EnhancedTable;
+export default MuiReactTable;

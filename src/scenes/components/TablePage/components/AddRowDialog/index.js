@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 
 const AddRowDialog = props => {
-    const { addRowHandler, initialValue, textFields, title } = props;
+    const { addRowHandler, initialValue, tableName, fields } = props;
     const [row, setRow] = useState(initialValue);
     const [open, setOpen] = React.useState(false);
 
@@ -57,12 +57,12 @@ const AddRowDialog = props => {
                 </IconButton>
             </Tooltip>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">{ title }</DialogTitle>
+                <DialogTitle id="form-dialog-title">{ tableName }</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Demo add item to react table.
-                        </DialogContentText>
-                    {textFields.map(field =>
+                        Add item to table.
+                    </DialogContentText>
+                    {fields.map(field =>
                         <TextField
                             margin="dense"
                             label={field.label}
@@ -96,14 +96,14 @@ const AddRowDialog = props => {
 AddRowDialog.propTypes = {
     addRowHandler: PropTypes.func.isRequired,
     initialValue: PropTypes.object.isRequired,
-    textFields: PropTypes.arrayOf(
+    fields: PropTypes.arrayOf(
         PropTypes.exact({
-            accessor: PropTypes.string,
-            label: PropTypes.string,
-            type: PropTypes.string
+            accessor: PropTypes.string.isRequired,
+            label: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired
         })
     ).isRequired,
-    title: PropTypes.string.isRequired
+    tableName: PropTypes.string.isRequired
 };
 
 export default AddRowDialog;
