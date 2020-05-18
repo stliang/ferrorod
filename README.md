@@ -21,9 +21,11 @@ In order to run this starter kit, you must create a project and database in Fire
 
 ## TODO
 
-1. [ ] Implement react-table interactions with server side persistance layer
-2. [ ] Implement server side pagination
-3. [ ] Implement chart to display some data
+1. [x] Implement react-table interactions with server side persistance layer
+2. [ ] Implement role based access for database (users only can edit their own data and block collection creation)
+3. [ ] Implement server side pagination
+4. [ ] Implement data update via table edit and delete actions
+5. [ ] Implement chart to display some data
 
 
 
