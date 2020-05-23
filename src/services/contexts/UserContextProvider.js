@@ -30,7 +30,7 @@ const UserContextProvider = (props) => {
     }; 
 
     return (
-        <UserContext.Provider value={{user, customClaims, initialising, error, login, logout}} {...props}/>
+        <UserContext.Provider value={{ customClaims, error, initialising, login, logout, user}} {...props}/>
     );
 }
 export default UserContextProvider;

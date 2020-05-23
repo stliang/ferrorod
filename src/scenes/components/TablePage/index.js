@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { FirebaseContext } from '../../../services/contexts/FirebaseContextProvider'
 import MuiReactTable from './components/MuiReactTable';
 import PropTypes from 'prop-types';
+import { UserDataContext } from '../../../services/contexts/UserDataContextProvider';
 
 const TablePage = (props) => {
     const { fields, initialValue, tableName } = props
@@ -15,27 +16,11 @@ const TablePage = (props) => {
     // const [data, setData] = React.useState(React.useMemo(() => makeData(20), []));
     const [data, setData] = React.useState([]);
     const { firebaseInstance } = useContext(FirebaseContext)
+    const { getRows } = useContext(UserDataContext)
     const [skipPageReset, setSkipPageReset] = React.useState(false)
 
-    const getRows = () => {
-        firebaseInstance
-            .firestore()
-            .collection(tableName)
-            .get()
-            .then((querySnapshot) => {
-                const data = querySnapshot.docs.map(doc => doc.data());
-                debugger
-                setData(data);
-                console.log(data);
-                debugger
-            })
-            .catch((error) => {
-                console.error("Error getting document: ", error);
-            });
-    }
-
     useEffect(() => {
-        getRows()
+        getRows(setData, tableName)
     }, []);
 
     // We need to keep the table from resetting the pageIndex when we

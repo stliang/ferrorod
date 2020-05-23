@@ -4,15 +4,18 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import FirebaseContextProvider from './services/contexts/FirebaseContextProvider';
 import UserContextProvider from './services/contexts/UserContextProvider';
+import UserDataContextProvider from './services/contexts/UserDataContextProvider';
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import Main from './scenes/Main';
 
 const App = props => (
     <FirebaseContextProvider>
         <UserContextProvider>
-            <MemoryRouter>
-                <Main />
-            </MemoryRouter>
+            <UserDataContextProvider>
+                <MemoryRouter>
+                    <Main />
+                </MemoryRouter>
+            </UserDataContextProvider>
         </UserContextProvider>
     </FirebaseContextProvider>
 );

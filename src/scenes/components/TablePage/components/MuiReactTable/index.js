@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import Checkbox from '@material-ui/core/Checkbox';
+import { FirebaseContext } from '../../../../../services/contexts/FirebaseContextProvider';
 import MaUTable from '@material-ui/core/Table';
 import PropTypes from 'prop-types';
 import TableBody from '@material-ui/core/TableBody';
@@ -13,9 +14,9 @@ import TablePaginationActions from './components/TablePaginationActions';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TableToolbar from './components/TableToolbar';
-import { FirebaseContext } from '../../../../../services/contexts/FirebaseContextProvider'
+import { UserContext } from '../../../../../services/contexts/UserContextProvider';
+import { UserDataContext } from '../../../../../services/contexts/UserDataContextProvider';
 import { useGlobalFilter, usePagination, useRowSelect, useSortBy, useTable } from 'react-table';
-import { v4 as uuidv4 } from 'uuid';
 
 const inputStyle = {
     padding: 0,
@@ -97,20 +98,8 @@ const MuiReactTable = ({
     tableName
 }) => {
     const { firebaseInstance } = useContext(FirebaseContext)
-    const saveRow = (row) => {
-        const uuid = uuidv4();
-        firebaseInstance
-            .firestore()
-            .collection(tableName)
-            .doc(uuid)
-            .set(row)
-            .then(() => {
-                console.log("Document successfully written!");
-            })
-            .catch((error) => {
-                console.error("Error writing document: ", error);
-            });
-    }
+    const { customClaims, user } = useContext(UserContext)
+    const { saveRow } = useContext(UserDataContext)
     const {
         getTableProps,
         headerGroups,
@@ -187,7 +176,7 @@ const MuiReactTable = ({
         const newData = data.concat([row]);
         setData(newData);
         delete row.subRows
-        saveRow(row)
+        saveRow(row, tableName)
     };
 
     // Render the UI for your table
