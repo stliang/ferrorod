@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { UserContext } from '../../../services/contexts/UserContextProvider';
 import * as ROUTES from './routes';
-import { AssetsPage, LandingPage, NotifyPage, SchedulePage, SettingsPage, UsersPage } from '../../pages';
+import { AssetsPage, LandingPage, NotifyPage, SchedulePage, SettingsPage, WorkFlowsPage } from '../../pages';
 
 const PrivilegedRoute = ({ component: Component, privileges, ...rest }) => {
     const { customClaims } = useContext(UserContext);
@@ -29,7 +29,7 @@ const Router = () => {
             <PrivilegedRoute path={ROUTES.ASSETS.path} privileges={ROUTES.SCHEDULE.privileges} component={AssetsPage} />
             <PrivilegedRoute path={ROUTES.SCHEDULE.path} privileges={ROUTES.SCHEDULE.privileges} component={SchedulePage} />
             <PrivilegedRoute path={ROUTES.SETTINGS.path} privileges={ROUTES.SETTINGS.privileges} component={SettingsPage} />
-            <PrivilegedRoute path={ROUTES.USERS.path} privileges={ROUTES.USERS.privileges} component={UsersPage} />
+            <PrivilegedRoute path={ROUTES.WORKFLOWS.path} privileges={ROUTES.WORKFLOWS.privileges} component={WorkFlowsPage} />
         </Switch>
     )
 }

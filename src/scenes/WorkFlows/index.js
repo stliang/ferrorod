@@ -2,7 +2,7 @@ import React from 'react'
 import * as CONFIG from './config'
 import TablePage from '../components/TablePage'
 
-const Users = (props) => {
+const WorkFlows = (props) => {
     return (
         <TablePage 
         fields={CONFIG.fields} 
@@ -12,4 +12,4 @@ const Users = (props) => {
     )
 }
 
-export default Users
+export default WorkFlows

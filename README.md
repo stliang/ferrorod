@@ -17,11 +17,11 @@ The aim of this project is to provide role based google authentication, CSS, Rea
 
 ## TODO
 
-[x] Implement react-table interactions with server side persistance layer
-[x] Implement user base database access
-[ ] Implement server side pagination
-[ ] Implement data update via table edit and delete actions
-[ ] Implement chart to display some data
+1. [x] Implement react-table interactions with server side persistance layer
+2. [x] Implement user base database access
+3. [ ] Implement server side pagination
+4. [ ] Implement data update via table edit and delete actions
+5. [ ] Implement chart to display some data
 
 ## Setup
 
@@ -37,5 +37,9 @@ service cloud.firestore {
     match /user_docs/{userId}/Assets/{document=**} {
       allow read, update, delete, create: if request.auth.uid == userId;
     }
+    match /user_docs/{userId}/WorkFlows/{document=**} {
+      allow read, update, delete, create: if request.auth.uid == userId;
+    }
   }
 }
+```

@@ -10,14 +10,14 @@ export const fields = [
         type: 'text',
     },
     {
-        label: 'Age',
-        accessor: 'age',
-        type: 'number',
+        label: 'Task',
+        accessor: 'task',
+        type: 'text',
     },
     {
-        label: 'Visits',
-        accessor: 'visits',
-        type: 'number',
+        label: 'Steps',
+        accessor: 'steps',
+        type: 'text',
     },
     {
         label: 'Status',
@@ -25,21 +25,20 @@ export const fields = [
         type: 'text',
     },
     {
-        label: 'Profile Progress',
-        accessor: 'profileProgress',
-        type: 'text',
+        label: 'Progress',
+        accessor: 'progress',
+        type: 'number',
     }
 ]
 
 export const initialValue = {
     firstName: '',
     lastName: '',
-    age: 0,
-    visits: 0,
-    quantity: 0,
+    task: '',
+    steps: '',
     status: '',
-    profileProgress: 0,
+    progress: 0,
     subRows: undefined
 }
 
-export const tableName = 'Users'
+export const tableName = 'WorkFlows'

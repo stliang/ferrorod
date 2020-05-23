@@ -28,17 +28,17 @@ const basic = [
 
 const paid = [
     {
-        route: ROUTES.SETTINGS.path,
-        primaryText: "Settings",
-        icon: "settings"
+        route: ROUTES.WORKFLOWS.path,
+        primaryText: "WorkFlows",
+        icon: "fast_forward"
     }
 ].concat(basic);
 
 const admin = [
     {
-        route: ROUTES.USERS.path,
-        primaryText: "Users",
-        icon: "people"
+        route: ROUTES.SETTINGS.path,
+        primaryText: "Settings",
+        icon: "settings"
     }
 ].concat(paid);
 
