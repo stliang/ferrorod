@@ -28,7 +28,7 @@ The aim of this project is to provide role based google authentication, CSS, Rea
 In order to run this starter kit, you must create a project and database in Firebase.  Go to Project settings and add a web app.  Transfer your Firebase SDK snippet to your local .env.development file.
 
 ## Backend Setup
-# DB access policy
+### DB access policy
 This application rely on firebse's database rule to configure user authorization.  As of now, the database rule is as follow:
 ```
 rules_version = '2';

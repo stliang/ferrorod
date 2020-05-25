@@ -6,17 +6,16 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemLink from '../../../components/ListItemLink';
-import * as NAVITEMS from '../../components/navItems';
+import { roleBasedDisplay } from '../../config'
 import { UserContext } from "../../../services/contexts/UserContextProvider";
 
 const NavContentEx = () => {
-  const { customClaims } = useContext(UserContext);
-  const { user, initialising, error, login, logout } = useContext(UserContext);
+  const { customClaims, user, initialising, error, login, logout } = useContext(UserContext);
   const list = () => {
     if (user) {
-      return NAVITEMS.ROLE[customClaims.userRole]
+      return roleBasedDisplay[customClaims.userRole]
     } else {
-      return NAVITEMS.ROLE["anonymous"]
+      return roleBasedDisplay["anonymous"]
     }
   }
 
@@ -50,8 +49,8 @@ const NavContentEx = () => {
 
   return (
     <List>
-      {list().map(({ route, primaryText, icon }, i) => (
-        <ListItemLink to={route} primary={primaryText} icon={<Icon>{icon}</Icon>} />
+      {list().map(({ path, primaryText, icon }, i) => (
+        <ListItemLink to={path} primary={primaryText} icon={<Icon>{icon}</Icon>} />
       ))}
       <Divider style={{ margin: "12px 0" }} />
       {loginButton()}
