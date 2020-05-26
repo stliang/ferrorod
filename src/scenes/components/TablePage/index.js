@@ -8,11 +8,12 @@ import { UserDataContext } from '../../../services/contexts/UserDataContextProvi
 
 const TablePage = (props) => {
     const { fields, initialValue, tableName } = props
-    const headers = fields.map(o => {return {Header: o.label, accessor: o.accessor}})
+    const headers = fields.map(o => {return {Header: o.label, accessor: o.accessor, show: o.show }})
     const columns = React.useMemo(
         () => headers,
         []
     )
+    debugger
     // const [data, setData] = React.useState(React.useMemo(() => makeData(20), []));
     const [data, setData] = React.useState([]);
     const { firebaseInstance } = useContext(FirebaseContext)
@@ -44,6 +45,7 @@ const TablePage = (props) => {
             })
         )
     }
+    const hiddenColumns = columns.filter(column => !column.show).map(column => column.accessor);
 
     return (
         <React.Fragment>
@@ -52,6 +54,7 @@ const TablePage = (props) => {
                     columns={columns}              // Internal
                     data={data}                    // Internal
                     fields={fields}
+                    hiddenColumns={hiddenColumns}  // Internal
                     initialValue={initialValue}
                     setData={setData}              // Internal
                     skipPageReset={skipPageReset}  // Internal

@@ -1,50 +1,50 @@
 export const fields = [
     {
-        label: 'Key',
-        accessor: 'key',
+        label: 'ID',
+        accessor: 'id',
         type: 'text',
-        visibility: 'hidden'
+        show: false
     },
     {
         label: 'First Name',
         accessor: 'firstName',
         type: 'text',
-        visibility: 'visible'
+        show: true
     },
     {
         label: 'Last Name',
         accessor: 'lastName',
         type: 'text',
-        visibility: 'visible'
+        show: true
     },
     {
         label: 'Task',
         accessor: 'task',
         type: 'text',
-        visibility: 'visible'
+        show: true
     },
     {
         label: 'Steps',
         accessor: 'steps',
         type: 'text',
-        visibility: 'visible'
+        show: true
     },
     {
         label: 'Status',
         accessor: 'status',
         type: 'text',
-        visibility: 'visible'
+        show: true
     },
     {
         label: 'Progress',
         accessor: 'progress',
         type: 'number',
-        visibility: 'visible'
+        show: true
     }
 ]
 
 export const initialValue = {
-    key: '',
+    id: '',
     firstName: '',
     lastName: '',
     task: '',

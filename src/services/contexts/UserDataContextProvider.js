@@ -29,14 +29,14 @@ const UserDataContextProvider = (props) => {
 
     const insertRow = (row, tableName) => {
         const uuid = uuidv4();
-        row.key = (new Date().getTime()) + '-' + uuid;
+        row.id = (new Date().getTime()) + '-' + uuid;
         if (user) {
             firebaseInstance
                 .firestore()
                 .collection('user_docs')
                 .doc(user.uid)
                 .collection(tableName)
-                .doc(row.key)
+                .doc(row.id)
                 .set(row)
                 .then(() => {
                     console.log("Document successfully written!");

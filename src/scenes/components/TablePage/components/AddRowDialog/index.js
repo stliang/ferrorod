@@ -63,7 +63,7 @@ const AddRowDialog = props => {
                         Add item to table.
                     </DialogContentText>
                     {fields.filter(
-                        field => field.visibility != 'hidden')
+                        field => field.show)
                         .map(field =>
                             <TextField
                                 margin="dense"

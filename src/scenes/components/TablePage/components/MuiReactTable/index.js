@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import Checkbox from '@material-ui/core/Checkbox';
 import { FirebaseContext } from '../../../../../services/contexts/FirebaseContextProvider';
@@ -91,12 +91,16 @@ const MuiReactTable = ({
     data,
     columns,
     fields,
+    hiddenColumns,
     initialValue,
     setData,
     skipPageReset,
     updateCell,
     tableName
 }) => {
+    useEffect(() => {
+        setHiddenColumns(hiddenColumns)
+      }, [hiddenColumns])
     const { firebaseInstance } = useContext(FirebaseContext)
     const { customClaims, user } = useContext(UserContext)
     const { insertRow } = useContext(UserDataContext)
@@ -106,11 +110,11 @@ const MuiReactTable = ({
         prepareRow,
         page,
         gotoPage,
+        setHiddenColumns,
         setPageSize,
         preGlobalFilteredRows,
         setGlobalFilter,
         state: { pageIndex, pageSize, selectedRowIds, globalFilter },
-
     } = useTable(
         {
             columns,

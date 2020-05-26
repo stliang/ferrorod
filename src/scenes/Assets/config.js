@@ -1,44 +1,44 @@
 export const fields = [
     {
-        label: 'Key',
-        accessor: 'key',
+        label: 'ID',
+        accessor: 'id',
         type: 'text',
-        visibility: 'hidden'
+        show: false
     },
     {
         label: 'Asset',
         accessor: 'asset',
         type: 'text',
-        visibility: 'visible'
+        show: true
     },
     {
         label: 'Cost',
         accessor: 'cost',
         type: 'number',
-        visibility: 'visible'
+        show: true
     },
     {
         label: 'Price',
         accessor: 'price',
         type: 'number',
-        visibility: 'visible'
+        show: true
     },
     {
         label: 'Quantity',
         accessor: 'quantity',
         type: 'number',
-        visibility: 'visible'
+        show: true
     },
     {
         label: 'Status',
         accessor: 'status',
         type: 'text',
-        visibility: 'visible'
+        show: true
     }
 ]
 
 export const initialValue = {
-    key: '',
+    id: '',
     asset: '',
     cost: 0,
     price: 0,
