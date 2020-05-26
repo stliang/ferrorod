@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import { UserDataContext } from '../../../services/contexts/UserDataContextProvider';
 
 const TablePage = (props) => {
-    const { fields, initialValue, tableName } = props
-    const headers = fields.map(o => {return {Header: o.label, accessor: o.accessor, show: o.show }})
+    const { tableColumns, initialValue, tableName } = props
+    const headers = tableColumns.map(column => {return {Header: column.label, accessor: column.accessor }})
     const columns = React.useMemo(
         () => headers,
         []
@@ -45,7 +45,7 @@ const TablePage = (props) => {
             })
         )
     }
-    const hiddenColumns = columns.filter(column => !column.show).map(column => column.accessor);
+    const hiddenColumns = tableColumns.filter(column => !column.show).map(column => column.accessor);
 
     return (
         <React.Fragment>
@@ -53,7 +53,7 @@ const TablePage = (props) => {
                 <MuiReactTable
                     columns={columns}              // Internal
                     data={data}                    // Internal
-                    fields={fields}
+                    tableColumns={tableColumns}
                     hiddenColumns={hiddenColumns}  // Internal
                     initialValue={initialValue}
                     setData={setData}              // Internal
@@ -66,7 +66,7 @@ const TablePage = (props) => {
 }
 
 TablePage.propTypes = {
-    fields: PropTypes.arrayOf(
+    tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,

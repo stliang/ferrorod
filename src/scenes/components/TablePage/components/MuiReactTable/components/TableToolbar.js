@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 const TableToolbar = ({
     addRowHandler,
     deleteRowHandler,
-    fields,
+    tableColumns,
     globalFilter,
     initialValue,
     numSelected,
@@ -54,7 +54,7 @@ const TableToolbar = ({
             <AddRowDialog
                 addRowHandler={addRowHandler}
                 initialValue={initialValue}
-                fields={fields}
+                tableColumns={tableColumns}
                 tableName={tableName}
             />
             {numSelected > 0 ? (
@@ -87,7 +87,7 @@ const TableToolbar = ({
 TableToolbar.propTypes = {
     addRowHandler: PropTypes.func.isRequired,
     deleteRowHandler: PropTypes.func.isRequired,
-    fields: PropTypes.arrayOf(
+    tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,

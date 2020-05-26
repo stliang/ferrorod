@@ -1,4 +1,4 @@
-export const fields = [
+export const tableColumns = [
     {
         label: 'ID',
         accessor: 'id',

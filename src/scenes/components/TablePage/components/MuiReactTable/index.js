@@ -90,7 +90,7 @@ const defaultColumn = {
 const MuiReactTable = ({
     data,
     columns,
-    fields,
+    tableColumns,
     hiddenColumns,
     initialValue,
     setData,
@@ -189,7 +189,7 @@ const MuiReactTable = ({
             <TableToolbar
                 addRowHandler={addRowHandler}
                 deleteRowHandler={deleteRowHandler}
-                fields={fields}
+                tableColumns={tableColumns}
                 globalFilter={globalFilter}
                 initialValue={initialValue}
                 numSelected={Object.keys(selectedRowIds).length}
@@ -256,7 +256,7 @@ const MuiReactTable = ({
 MuiReactTable.propTypes = {
     columns: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
-    fields: PropTypes.arrayOf(
+    tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,

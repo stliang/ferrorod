@@ -5,7 +5,7 @@ import TablePage from '../components/TablePage'
 const Assets = (props) => {
     return (
         <TablePage 
-        fields={CONFIG.fields} 
+        tableColumns={CONFIG.tableColumns} 
         initialValue={CONFIG.initialValue} 
         tableName={CONFIG.tableName}
         />

@@ -14,7 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 
 const AddRowDialog = props => {
-    const { addRowHandler, initialValue, tableName, fields } = props;
+    const { addRowHandler, initialValue, tableName, tableColumns } = props;
     const [row, setRow] = useState(initialValue);
     const [open, setOpen] = React.useState(false);
 
@@ -62,16 +62,16 @@ const AddRowDialog = props => {
                     <DialogContentText>
                         Add item to table.
                     </DialogContentText>
-                    {fields.filter(
-                        field => field.show)
-                        .map(field =>
+                    {tableColumns.filter(
+                        column => column.show)
+                        .map(column =>
                             <TextField
                                 margin="dense"
-                                label={field.label}
-                                type={field.type}
+                                label={column.label}
+                                type={column.type}
                                 fullWidth
-                                value={row[field.accessor]}
-                                onChange={handleChange(field.accessor)}
+                                value={row[column.accessor]}
+                                onChange={handleChange(column.accessor)}
                             />
                         )}
                 </DialogContent>
@@ -99,7 +99,7 @@ const AddRowDialog = props => {
 AddRowDialog.propTypes = {
     addRowHandler: PropTypes.func.isRequired,
     initialValue: PropTypes.object.isRequired,
-    fields: PropTypes.arrayOf(
+    tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
