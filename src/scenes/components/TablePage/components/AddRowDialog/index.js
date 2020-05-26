@@ -57,20 +57,23 @@ const AddRowDialog = props => {
                 </IconButton>
             </Tooltip>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">{ tableName }</DialogTitle>
+                <DialogTitle id="form-dialog-title">{tableName}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Add item to table.
                     </DialogContentText>
-                    {fields.map(field =>
-                        <TextField
-                            margin="dense"
-                            label={field.label}
-                            type={field.type}
-                            fullWidth
-                            value={row[field.accessor]}
-                            onChange={handleChange(field.accessor)}
-                        />)}
+                    {fields.filter(
+                        field => field.visibility != 'hidden')
+                        .map(field =>
+                            <TextField
+                                margin="dense"
+                                label={field.label}
+                                type={field.type}
+                                fullWidth
+                                value={row[field.accessor]}
+                                onChange={handleChange(field.accessor)}
+                            />
+                        )}
                 </DialogContent>
                 <DialogActions>
                     <Tooltip title="Add multiple">

@@ -99,7 +99,7 @@ const MuiReactTable = ({
 }) => {
     const { firebaseInstance } = useContext(FirebaseContext)
     const { customClaims, user } = useContext(UserContext)
-    const { saveRow } = useContext(UserDataContext)
+    const { insertRow } = useContext(UserDataContext)
     const {
         getTableProps,
         headerGroups,
@@ -176,7 +176,7 @@ const MuiReactTable = ({
         const newData = data.concat([row]);
         setData(newData);
         delete row.subRows
-        saveRow(row, tableName)
+        insertRow(row, tableName)
     };
 
     // Render the UI for your table

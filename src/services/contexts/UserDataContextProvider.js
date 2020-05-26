@@ -27,13 +27,16 @@ const UserDataContextProvider = (props) => {
         }
     }
 
-    const saveRow = (row, tableName) => {
+    const insertRow = (row, tableName) => {
         const uuid = uuidv4();
+        row.key = (new Date().getTime()) + '-' + uuid;
         if (user) {
             firebaseInstance
                 .firestore()
                 .collection('user_docs')
-                .doc(user.uid + '/' + tableName + '/' + uuid)
+                .doc(user.uid)
+                .collection(tableName)
+                .doc(row.key)
                 .set(row)
                 .then(() => {
                     console.log("Document successfully written!");
@@ -44,7 +47,7 @@ const UserDataContextProvider = (props) => {
         }
     }
     return (
-        <UserDataContext.Provider value={{ getRows, saveRow }} {...props} />
+        <UserDataContext.Provider value={{ getRows, insertRow }} {...props} />
     );
 }
 export default UserDataContextProvider;
