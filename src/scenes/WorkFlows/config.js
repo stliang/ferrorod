@@ -1,11 +1,5 @@
 export const tableColumns = [
     {
-        label: 'ID',
-        accessor: 'id',
-        type: 'text',
-        show: false
-    },
-    {
         label: 'First Name',
         accessor: 'firstName',
         type: 'text',
@@ -44,7 +38,6 @@ export const tableColumns = [
 ]
 
 export const initialValue = {
-    id: '',
     firstName: '',
     lastName: '',
     task: '',

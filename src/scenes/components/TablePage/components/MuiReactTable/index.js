@@ -94,6 +94,7 @@ const MuiReactTable = ({
     hiddenColumns,
     initialValue,
     setData,
+    refreshData,
     skipPageReset,
     updateCell,
     tableName
@@ -103,7 +104,7 @@ const MuiReactTable = ({
       }, [hiddenColumns])
     const { firebaseInstance } = useContext(FirebaseContext)
     const { customClaims, user } = useContext(UserContext)
-    const { insertRow } = useContext(UserDataContext)
+    const { deleteDoc, insertRow } = useContext(UserDataContext)
     const {
         getTableProps,
         headerGroups,
@@ -169,18 +170,36 @@ const MuiReactTable = ({
         setPageSize(Number(event.target.value));
     };
 
-    const removeByIndexs = (array, indexs) => array.filter((_, i) => !indexs.includes(i));
+    const removeByIndexs2 = (array, indexs) => array.filter((_, i) => !indexs.includes(i));
+    const removeByIndexs = (dataSet, indexs) => {
+        // get list of ids from select rows
+
+        // delete docs with the ids
+        const xs = dataSet.filter((_, i) => indexs.includes(i)).map(row => row.id);
+        xs.map(id => deleteDoc(id, tableName));
+        refreshData();
+        // xs.forEach( id => {
+        //     deleteDoc(id, tableName);
+        //     refreshData();
+        // });
+        // TODO: refresh the table, don't do the next line.  The table component should
+        // refresh itself when delete is called.
+        // return dataSet.filter((_, i) => !indexs.includes(i));
+    }
 
     const deleteRowHandler = (event) => {
-        const newData = removeByIndexs(data, Object.keys(selectedRowIds).map(x => parseInt(x, 10)));
-        setData(newData);
+        // const newData = removeByIndexs(data, Object.keys(selectedRowIds).map(x => parseInt(x, 10)));
+        // debugger
+        // setData(newData);
+        removeByIndexs(data, Object.keys(selectedRowIds).map(x => parseInt(x, 10)));
     };
 
     const addRowHandler = (row) => {
-        const newData = data.concat([row]);
-        setData(newData);
+        // const newData = data.concat([row]);
+        // setData(newData);
         delete row.subRows
-        insertRow(row, tableName)
+        insertRow(row, tableName);
+        refreshData();
     };
 
     // Render the UI for your table
@@ -265,6 +284,7 @@ MuiReactTable.propTypes = {
     ).isRequired,
     initialValue: PropTypes.object.isRequired,
     setData: PropTypes.func.isRequired,
+    refreshData: PropTypes.func.isRequired,
     skipPageReset: PropTypes.bool.isRequired,
     updateCell: PropTypes.func.isRequired,
     tableName: PropTypes.string.isRequired

@@ -8,20 +8,24 @@ import { UserDataContext } from '../../../services/contexts/UserDataContextProvi
 
 const TablePage = (props) => {
     const { tableColumns, initialValue, tableName } = props
-    const headers = tableColumns.map(column => {return {Header: column.label, accessor: column.accessor }})
+    const headers = tableColumns.map(column => { return { Header: column.label, accessor: column.accessor } })
     const columns = React.useMemo(
         () => headers,
         []
     )
-    debugger
     // const [data, setData] = React.useState(React.useMemo(() => makeData(20), []));
     const [data, setData] = React.useState([]);
     const { firebaseInstance } = useContext(FirebaseContext)
     const { getRows } = useContext(UserDataContext)
     const [skipPageReset, setSkipPageReset] = React.useState(false)
 
-    useEffect(() => {
+    const refreshData = () => {
         getRows(setData, tableName)
+    }
+
+    useEffect(() => {
+        console.log('TODO: Need clean up using unsubscription when delete data');
+        refreshData();
     }, []);
 
     // We need to keep the table from resetting the pageIndex when we
@@ -50,17 +54,18 @@ const TablePage = (props) => {
     return (
         <React.Fragment>
             <CssBaseline />
-                <MuiReactTable
-                    columns={columns}              // Internal
-                    data={data}                    // Internal
-                    tableColumns={tableColumns}
-                    hiddenColumns={hiddenColumns}  // Internal
-                    initialValue={initialValue}
-                    setData={setData}              // Internal
-                    skipPageReset={skipPageReset}  // Internal
-                    updateCell={updateCell}        // Internal
-                    tableName={tableName}
-                />
+            <MuiReactTable
+                columns={columns}              // Internal
+                data={data}                    // Internal
+                tableColumns={tableColumns}
+                hiddenColumns={hiddenColumns}  // Internal
+                initialValue={initialValue}
+                setData={setData}              // Internal
+                refreshData={refreshData}
+                skipPageReset={skipPageReset}  // Internal
+                updateCell={updateCell}        // Internal
+                tableName={tableName}
+            />
         </React.Fragment>
     )
 }

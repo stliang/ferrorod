@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const UserDataContext = createContext();
 
+// New implementation is based on the following URL
+// https://medium.com/technest/how-to-connect-firebase-cloud-firestore-to-your-react-app-1118fd182c60
 const UserDataContextProvider = (props) => {
     const { firebaseInstance } = useContext(FirebaseContext);
     const { user } = useContext(UserContext);
@@ -15,39 +17,39 @@ const UserDataContextProvider = (props) => {
                 .firestore()
                 .collection('user_docs')
                 .doc(user.uid)
-                .collection(tableName)
-                .get()
-                .then((querySnapshot) => {
-                    const data = querySnapshot.docs.map(doc => doc.data());
-                    setData(data);
-                })
-                .catch((error) => {
-                    console.error("Error getting document: ", error);
+                .collection(tableName).onSnapshot(snapshot => {
+                    const allDocs = snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+                    setData(allDocs);
                 });
         }
     }
 
     const insertRow = (row, tableName) => {
-        const uuid = uuidv4();
-        row.id = (new Date().getTime()) + '-' + uuid;
         if (user) {
             firebaseInstance
                 .firestore()
                 .collection('user_docs')
                 .doc(user.uid)
                 .collection(tableName)
-                .doc(row.id)
-                .set(row)
-                .then(() => {
-                    console.log("Document successfully written!");
-                })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });
+                .add(row);
         }
     }
+
+    const deleteDoc = (id, tableName) => {
+        firebaseInstance
+            .firestore()
+            .collection('user_docs')
+            .doc(user.uid)
+            .collection(tableName)
+            .doc(id)
+            .delete();
+    };
+
     return (
-        <UserDataContext.Provider value={{ getRows, insertRow }} {...props} />
+        <UserDataContext.Provider value={{ deleteDoc, getRows, insertRow }} {...props} />
     );
 }
 export default UserDataContextProvider;
