@@ -16,7 +16,7 @@ const TablePage = (props) => {
     // const [data, setData] = React.useState(React.useMemo(() => makeData(20), []));
     const [data, setData] = React.useState([]);
     const { firebaseInstance } = useContext(FirebaseContext)
-    const { getRows } = useContext(UserDataContext)
+    const { getRows, updateRow } = useContext(UserDataContext)
     const [skipPageReset, setSkipPageReset] = React.useState(false)
 
     const refreshData = () => {
@@ -37,17 +37,27 @@ const TablePage = (props) => {
     const updateCell = (rowIndex, columnId, value) => {
         // We also turn on the flag to not reset the page
         setSkipPageReset(true)
-        setData(old =>
-            old.map((row, index) => {
-                if (index === rowIndex) {
-                    return {
-                        ...old[rowIndex],
-                        [columnId]: value,
-                    }
-                }
-                return row
-            })
-        )
+
+        // Update remote database
+        // const id = data[rowIndex].id
+        // const fields = {[columnId]: value}
+        // TODO: run fields validation such as isNaN and const pointNum = parseFloat(text)
+        // debugger
+        updateRow(data[rowIndex].id, {[columnId]: value}, tableName)
+        // debugger
+
+        // // Update loca data set
+        // setData(old =>
+        //     old.map((row, index) => {
+        //         if (index === rowIndex) {
+        //             return {
+        //                 ...old[rowIndex],
+        //                 [columnId]: value,
+        //             }
+        //         }
+        //         return row
+        //     })
+        // )
     }
     const hiddenColumns = tableColumns.filter(column => !column.show).map(column => column.accessor);
 

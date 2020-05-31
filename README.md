@@ -19,9 +19,10 @@ The aim of this project is to provide role based google authentication, CSS, Rea
 
 1. [x] Implement react-table interactions with server side persistance layer
 2. [x] Implement user base database access
-3. [ ] Implement data update via table edit and delete actions
+3. [x] Implement data update via table edit and delete actions
 4. [ ] Implement server side pagination
-5. [ ] Implement chart to display some data
+5. [ ] Clean up all errors
+6. [ ] Implement chart to display some data
 
 ## Setup
 

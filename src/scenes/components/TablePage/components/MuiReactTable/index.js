@@ -104,7 +104,7 @@ const MuiReactTable = ({
       }, [hiddenColumns])
     const { firebaseInstance } = useContext(FirebaseContext)
     const { customClaims, user } = useContext(UserContext)
-    const { deleteDoc, insertRow } = useContext(UserDataContext)
+    const { deleteRow, insertRow } = useContext(UserDataContext)
     const {
         getTableProps,
         headerGroups,
@@ -176,10 +176,10 @@ const MuiReactTable = ({
 
         // delete docs with the ids
         const xs = dataSet.filter((_, i) => indexs.includes(i)).map(row => row.id);
-        xs.map(id => deleteDoc(id, tableName));
+        xs.map(id => deleteRow(id, tableName));
         refreshData();
         // xs.forEach( id => {
-        //     deleteDoc(id, tableName);
+        //     deleteRow(id, tableName);
         //     refreshData();
         // });
         // TODO: refresh the table, don't do the next line.  The table component should

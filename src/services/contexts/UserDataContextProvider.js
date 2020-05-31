@@ -1,7 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { FirebaseContext } from './FirebaseContextProvider';
 import { UserContext } from './UserContextProvider';
-import { v4 as uuidv4 } from 'uuid';
 
 export const UserDataContext = createContext();
 
@@ -38,7 +37,7 @@ const UserDataContextProvider = (props) => {
         }
     }
 
-    const deleteDoc = (id, tableName) => {
+    const deleteRow = (id, tableName) => {
         firebaseInstance
             .firestore()
             .collection('user_docs')
@@ -48,8 +47,19 @@ const UserDataContextProvider = (props) => {
             .delete();
     };
 
+    const updateRow = (id, fields, tableName) => {
+        debugger
+        firebaseInstance
+            .firestore()
+            .collection('user_docs')
+            .doc(user.uid)
+            .collection(tableName)
+            .doc(id)
+            .update(fields);
+    };
+
     return (
-        <UserDataContext.Provider value={{ deleteDoc, getRows, insertRow }} {...props} />
+        <UserDataContext.Provider value={{ deleteRow, getRows, insertRow, updateRow }} {...props} />
     );
 }
 export default UserDataContextProvider;
