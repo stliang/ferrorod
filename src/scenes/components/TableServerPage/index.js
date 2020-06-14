@@ -6,7 +6,7 @@ import MuiReactTable from './components/MuiReactTable';
 import PropTypes from 'prop-types';
 import { UserDataContext } from '../../../services/contexts/UserDataContextProvider';
 
-const TablePage = (props) => {
+const TableServerPage = (props) => {
     const { tableColumns, initialValue, tableName } = props
     const headers = tableColumns.map(column => { return { Header: column.label, accessor: column.accessor } })
     const columns = React.useMemo(
@@ -81,7 +81,7 @@ const TablePage = (props) => {
     )
 }
 
-TablePage.propTypes = {
+TableServerPage.propTypes = {
     tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
             accessor: PropTypes.string.isRequired,
@@ -93,4 +93,4 @@ TablePage.propTypes = {
     tableName: PropTypes.string.isRequired
 };
 
-export default TablePage
+export default TableServerPage

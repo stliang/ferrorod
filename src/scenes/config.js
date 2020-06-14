@@ -2,6 +2,7 @@ import { ADMIN, ANONYMOUS, BASIC, PAID } from '../security/roles';
 
 import Assets from './Assets';
 import Landing from './Landing';
+import Grasses from './Grasses';
 import Notify from './Notify';
 import Schedule from './Schedule';
 import Settings from './Settings';
@@ -27,6 +28,15 @@ const basicNavItems = [
         page: Notify,
         path: '/notify',
         primaryText: "Notify",
+        privileges: BASIC,
+    },
+    {
+        description: 'Grasses',
+        exactRoute: false,
+        icon: "eco",
+        page: Grasses,
+        path: '/grasses',
+        primaryText: "Grasses",
         privileges: BASIC,
     },
     {

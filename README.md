@@ -41,6 +41,12 @@ service cloud.firestore {
     match /user_docs/{userId}/WorkFlows/{document=**} {
       allow read, update, delete, create: if request.auth.uid == userId;
     }
+    match /user_docs/{userId}/Grasses/{document=**} {
+      allow read, update, delete, create: if request.auth.uid == userId;
+    }
   }
 }
 ```
+
+## Helpful Commands for Development
+yarn upgrade firebase@latest
