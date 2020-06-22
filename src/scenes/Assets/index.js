@@ -8,6 +8,7 @@ const Assets = (props) => {
         tableColumns={CONFIG.tableColumns} 
         initialValue={CONFIG.initialValue} 
         tableName={CONFIG.tableName}
+        serverSidePagination={CONFIG.serverSidePagination}
         />
     )
 }

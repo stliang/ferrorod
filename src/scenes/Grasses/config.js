@@ -48,3 +48,5 @@ export const initialValue = {
 }
 
 export const tableName = 'Grasses'
+
+export const serverSidePagination = true

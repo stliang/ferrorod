@@ -34,6 +34,12 @@ export const tableColumns = [
         accessor: 'progress',
         type: 'number',
         show: true
+    },
+    {
+        label: 'Timestamp',
+        accessor: 'timestamp',
+        type: 'number',
+        show: false
     }
 ]
 
@@ -44,7 +50,10 @@ export const initialValue = {
     steps: '',
     status: '',
     progress: 0,
+    timestamp: 0,
     subRows: undefined
 }
 
 export const tableName = 'WorkFlows'
+
+export const serverSidePagination = false

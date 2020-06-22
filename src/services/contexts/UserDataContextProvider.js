@@ -86,11 +86,13 @@ const UserDataContextProvider = (props) => {
                 .startAfter(lastDoc[orderBy])  // Use timestamp 
                 .limit(pageSize)
                 .onSnapshot(snapshot => {
-                    const allDocs = snapshot.docs.map(doc => ({
-                        id: doc.id,
-                        ...doc.data()
-                    }));
-                    setData(allDocs);
+                    if (snapshot.docs.length > 0) {
+                        const allDocs = snapshot.docs.map(doc => ({
+                            id: doc.id,
+                            ...doc.data()
+                        }));
+                        setData(allDocs);
+                    }
                 });
         }
     }
@@ -106,11 +108,13 @@ const UserDataContextProvider = (props) => {
                 .endBefore(firstDoc[orderBy])
                 .limitToLast(pageSize)
                 .onSnapshot(snapshot => {
-                    const allDocs = snapshot.docs.map(doc => ({
-                        id: doc.id,
-                        ...doc.data()
-                    }));
-                    setData(allDocs);
+                    if (snapshot.docs.length > 0) {
+                        const allDocs = snapshot.docs.map(doc => ({
+                            id: doc.id,
+                            ...doc.data()
+                        }));
+                        setData(allDocs);
+                    }
                 });
         }
     }
@@ -134,6 +138,7 @@ const UserDataContextProvider = (props) => {
 
     const insertRow = (row, tableName) => {
         if (user) {
+            row['timestamp'] = Date.now();
             firebaseInstance
                 .firestore()
                 .collection('user_docs')

@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 
 import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import { FirebaseContext } from '../../../../../services/contexts/FirebaseContextProvider';
 import MaUTable from '@material-ui/core/Table';
 import PropTypes from 'prop-types';
@@ -17,6 +20,7 @@ import TableToolbar from './components/TableToolbar';
 import { UserContext } from '../../../../../services/contexts/UserContextProvider';
 import { UserDataContext } from '../../../../../services/contexts/UserDataContextProvider';
 import { useGlobalFilter, usePagination, useRowSelect, useSortBy, useTable } from 'react-table';
+import { useTheme } from '@material-ui/styles';
 
 const inputStyle = {
     padding: 0,
@@ -97,14 +101,15 @@ const MuiReactTable = ({
     refreshData,
     skipPageReset,
     updateCell,
-    tableName
+    tableName,
+    serverSidePagination
 }) => {
     useEffect(() => {
         setHiddenColumns(hiddenColumns)
-      }, [hiddenColumns])
+    }, [hiddenColumns])
     const { firebaseInstance } = useContext(FirebaseContext)
     const { customClaims, user } = useContext(UserContext)
-    const { deleteRow, insertRow } = useContext(UserDataContext)
+    const { deleteRow, insertRow, nextPage, prevPage } = useContext(UserDataContext)
     const {
         getTableProps,
         headerGroups,
@@ -202,6 +207,27 @@ const MuiReactTable = ({
         refreshData();
     };
 
+    const theme = useTheme();
+
+    const handlePreviousPage = event => {
+        if (data.length > 0) {
+            const firstDoc = data[0]
+            const pageSize = 5
+            const orderBy = "timestamp"
+            prevPage(firstDoc, pageSize, orderBy, setData, tableName)
+        }
+    };
+
+
+    const handleNextPage = event => {
+        if (data.length > 0) {
+            const lastDoc = data[data.length - 1]
+            const pageSize = 5
+            const orderBy = "timestamp"
+            nextPage(lastDoc, pageSize, orderBy, setData, tableName)
+        }
+    };
+
     // Render the UI for your table
     return (
         <TableContainer>
@@ -251,20 +277,34 @@ const MuiReactTable = ({
                 </TableBody>
                 <TableFooter>
                     <TableRow>
-                        <TablePagination
-                            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: data.length }]}
-                            colSpan={3}
-                            count={data.length}
-                            rowsPerPage={pageSize}
-                            page={pageIndex}
-                            SelectProps={{
-                                inputProps: { 'aria-label': 'rows per page' },
-                                native: true,
-                            }}
-                            onChangePage={handleChangePage}
-                            onChangeRowsPerPage={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
-                        />
+                        {serverSidePagination ?
+                            <div>
+                                <IconButton onClick={handlePreviousPage} aria-label="previous page">
+                                    {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                                </IconButton>
+                                <IconButton
+                                    onClick={handleNextPage}
+                                    aria-label="next page"
+                                >
+                                    {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                                </IconButton>
+                            </div>
+                            :
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: data.length }]}
+                                colSpan={3}
+                                count={data.length}
+                                rowsPerPage={pageSize}
+                                page={pageIndex}
+                                SelectProps={{
+                                    inputProps: { 'aria-label': 'rows per page' },
+                                    native: true,
+                                }}
+                                onChangePage={handleChangePage}
+                                onChangeRowsPerPage={handleChangeRowsPerPage}
+                                ActionsComponent={TablePaginationActions}
+                            />
+                        }
                     </TableRow>
                 </TableFooter>
             </MaUTable>
@@ -287,7 +327,8 @@ MuiReactTable.propTypes = {
     refreshData: PropTypes.func.isRequired,
     skipPageReset: PropTypes.bool.isRequired,
     updateCell: PropTypes.func.isRequired,
-    tableName: PropTypes.string.isRequired
+    tableName: PropTypes.string.isRequired,
+    serverSidePagination: PropTypes.bool.isRequired
 };
 
 export default MuiReactTable;

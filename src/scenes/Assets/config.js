@@ -28,6 +28,12 @@ export const tableColumns = [
         accessor: 'status',
         type: 'text',
         show: true
+    },
+    {
+        label: 'Timestamp',
+        accessor: 'timestamp',
+        type: 'number',
+        show: false
     }
 ]
 
@@ -37,7 +43,10 @@ export const initialValue = {
     price: 0,
     quantity: 0,
     status: '',
+    timestamp: 0,
     subRows: undefined
 }
 
 export const tableName = 'Assets'
+
+export const serverSidePagination = false
