@@ -8,7 +8,7 @@
     "@mui-treasury/layout": "^3.3.3",
     "crocks": "^0.12.4",
     "firebase": "^7.15.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "lottie-web-react": "^1.0.3",
     "material-table": "^1.54.2",
     "namor": "^1.1.3",
