@@ -21,7 +21,7 @@ The aim of this project is to provide role based google authentication, CSS, Rea
 2. [x] Implement user base database access
 3. [x] Implement data update via table edit and delete actions
 4. [x] Implement server side pagination
-5. [ ] Convert imperative to functional code
+5. [x] Convert imperative to functional code (customClaims should be in the same ADT as user)
 6. [ ] Clean up all errors
 7. [ ] Implement chart to display some data
 
