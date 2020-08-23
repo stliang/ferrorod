@@ -9,30 +9,23 @@ import ListItemLink from '../../../components/ListItemLink';
 import { roleBasedDisplay } from '../../config'
 import { UserContext } from "../../../services/contexts/UserContextProvider";
 
+import Maybe from 'crocks/Maybe'
+
+const { Nothing } = Maybe
+
 const NavContentEx = () => {
-  const { customClaims, user, initialising, error, login, logout } = useContext(UserContext);
+  const { customClaims, login, logout, maybeUser } = useContext(UserContext);
   const list = () => {
-    if (user) {
-      return roleBasedDisplay[customClaims.userRole]
-    } else {
+    debugger
+    if (maybeUser.equals(Nothing())) {
       return roleBasedDisplay["anonymous"]
+    } else {
+      return roleBasedDisplay[customClaims.userRole]
     }
   }
 
   const loginButton = () => {
-    if (user) {
-      return (
-        <ListItem button onClick={logout}>
-          <ListItemIcon>
-            <Icon>lock</Icon>
-          </ListItemIcon>
-          <ListItemText
-            primary={"Logout"}
-            primaryTypographyProps={{ noWrap: true }}
-          />
-        </ListItem>
-      )
-    } else {
+    if (maybeUser.equals(Nothing())) {
       return (
         <ListItem button onClick={login}>
           <ListItemIcon>
@@ -40,6 +33,18 @@ const NavContentEx = () => {
           </ListItemIcon>
           <ListItemText
             primary={"Login"}
+            primaryTypographyProps={{ noWrap: true }}
+          />
+        </ListItem>
+      )
+    } else {
+      return (
+        <ListItem button onClick={logout}>
+          <ListItemIcon>
+            <Icon>lock</Icon>
+          </ListItemIcon>
+          <ListItemText
+            primary={"Logout"}
             primaryTypographyProps={{ noWrap: true }}
           />
         </ListItem>

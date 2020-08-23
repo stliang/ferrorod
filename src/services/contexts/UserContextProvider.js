@@ -1,9 +1,13 @@
 import React, { useContext, createContext, useState, useEffect } from 'react';
-import { Async, chain, compose, Maybe, maybeToAsync } from "crocks";
+import { Async, chain, compose, Either, eitherToAsync, ifElse, Maybe, maybeToAsync } from "crocks";
 import { FirebaseContext } from './FirebaseContextProvider';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const UserContext = createContext();
+
+// https://github.com/evilsoft/crocks/issues/483
+
+const { Left, Right } = Either
 
 // https://www.freecodecamp.org/news/functional-programming-patterns-cookbook-3a0dfe2d7e0a/
 // logError :: (...a) -> IO()
@@ -20,7 +24,6 @@ const UserContextProvider = (props) => {
 
     const { fromPromise } = Async;
 
-    // useEffect(() => { requestCustomClaims(user) }, [user]);
     useEffect(() => { safeRequestCustomClaims(user) }, [user]);
 
     const provider = new firebaseInstance.firebase_.auth["GoogleAuthProvider"]();
@@ -33,27 +36,22 @@ const UserContextProvider = (props) => {
         storeCustomClaims(defaultClaims);
     };
 
-    // const requestCustomClaims = async (user) => {
-    //     if (user) {
-    //         const idTokenResult = await user.getIdTokenResult();
-    //         storeCustomClaims(idTokenResult.claims);
-    //     }
-    // };
+    const maybeUserF = (_user) => _user ? Maybe.Just(user) : Maybe.Nothing();
+    const maybeUser = maybeUserF(user)
 
-    const mayBeUser = () => user ? Maybe.Just(user) : Maybe.Nothing();
+    const eitherUserF = (_user) => _user ? Right(_user) : Left('anonymous');
 
     // promiseIdTokenResult :: () -> Promise idTokenResult Error
     const promiseIdTokenResult = () => user.getIdTokenResult();
 
-    // getIdTokenResult :: () -> Async idTokenResult Error
     const getIdTokenResult = compose(
         chain(fromPromise(promiseIdTokenResult)),
-        maybeToAsync('user is null'),
-        mayBeUser
+        eitherToAsync,
+        eitherUserF
     )
 
-    const safeRequestCustomClaims = () => {
-        getIdTokenResult().fork(
+    const safeRequestCustomClaims = (_user) => {
+        getIdTokenResult(_user).fork(
             logError,
             idTokenResult => {
                 storeCustomClaims(idTokenResult.claims)
@@ -68,8 +66,7 @@ const UserContextProvider = (props) => {
             initialising,
             login,
             logout,
-            mayBeUser,
-            user
+            maybeUser
         }} {...props} />
     );
 }

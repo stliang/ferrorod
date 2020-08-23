@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Icon from "@material-ui/core/Icon";
 import PropTypes from "prop-types";
 import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import { UserContext } from "../../../services/contexts/UserContextProvider";
 
+// import Maybe from 'crocks/Maybe'
+// const { Nothing } = Maybe
+
 const NavHeaderEx = ({ collapsed }) => {
-  const { user, initialising, error, login, logout } = useContext(UserContext);
+  const { maybeUser, initialising, error } = useContext(UserContext);
+  const user = maybeUser.option(null)
+
   const currentUser = () => {
     if (initialising) {
       return (
@@ -35,6 +34,7 @@ const NavHeaderEx = ({ collapsed }) => {
         </Typography>
       )
     }
+
     return (
       <Typography variant={"h6"} noWrap>
         Welcome
@@ -51,7 +51,7 @@ const NavHeaderEx = ({ collapsed }) => {
             height: collapsed ? 48 : 60,
             transition: "0.3s"
           }}
-          src={user ? user.photoURL : null}
+        src={user ? user.photoURL : null}
         />
         <div style={{ paddingBottom: 16 }} />
         {currentUser()}

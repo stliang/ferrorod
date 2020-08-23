@@ -4,7 +4,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import { FirebaseContext } from '../../../../../services/contexts/FirebaseContextProvider';
 import MaUTable from '@material-ui/core/Table';
 import PropTypes from 'prop-types';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,7 +16,6 @@ import TablePaginationActions from './components/TablePaginationActions';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TableToolbar from './components/TableToolbar';
-import { UserContext } from '../../../../../services/contexts/UserContextProvider';
 import { UserDataContext } from '../../../../../services/contexts/UserDataContextProvider';
 import { useGlobalFilter, usePagination, useRowSelect, useSortBy, useTable } from 'react-table';
 import { useTheme } from '@material-ui/styles';
@@ -107,8 +105,6 @@ const MuiReactTable = ({
     useEffect(() => {
         setHiddenColumns(hiddenColumns)
     }, [hiddenColumns])
-    const { firebaseInstance } = useContext(FirebaseContext)
-    const { customClaims, user } = useContext(UserContext)
     const { deleteRow, insertRow, nextPage, prevPage } = useContext(UserDataContext)
     const {
         getTableProps,
