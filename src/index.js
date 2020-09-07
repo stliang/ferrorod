@@ -7,6 +7,10 @@ import UserContextProvider from './services/contexts/UserContextProvider';
 import UserDataContextProvider from './services/contexts/UserDataContextProvider';
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import Main from './scenes/Main';
+// import MainPOC from './poc/Main';
+// const App = props => (
+//     <MainPOC />
+// )
 
 const App = props => (
     <FirebaseContextProvider>

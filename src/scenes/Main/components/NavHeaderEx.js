@@ -1,48 +1,14 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import { UserContext } from "../../../services/contexts/UserContextProvider";
-
-// import Maybe from 'crocks/Maybe'
-// const { Nothing } = Maybe
+import React, { useContext } from "react"
+import PropTypes from "prop-types"
+import Avatar from "@material-ui/core/Avatar"
+import Typography from "@material-ui/core/Typography"
+import Divider from "@material-ui/core/Divider"
+import { UserContext } from "../../../services/contexts/UserContextProvider"
+import { either } from "crocks"
 
 const NavHeaderEx = ({ collapsed }) => {
-  const { maybeUser, initialising, error } = useContext(UserContext);
-  const user = maybeUser.option(null)
-
-  const currentUser = () => {
-    if (initialising) {
-      return (
-        <Typography color={"textSecondary"} noWrap gutterBottom>
-          Initialising User...
-        </Typography>
-      );
-    }
-    if (error) {
-      return (
-        <Typography color={"textSecondary"} noWrap gutterBottom>
-          Login Failed
-        </Typography>
-      );
-    }
-    if (user) {
-      return (
-        <Typography variant={"h6"} noWrap>
-          {user.displayName}
-        </Typography>
-      )
-    }
-
-    return (
-      <Typography variant={"h6"} noWrap>
-        Welcome
-      </Typography>
-    )
-  }
-
-  return (
+  const { maybeUser, initialising, error } = useContext(UserContext)
+  const UserDisplay = (photoURL, displayName) =>
     <>
       <div style={{ padding: collapsed ? 8 : 16, transition: "0.3s" }}>
         <Avatar
@@ -51,16 +17,37 @@ const NavHeaderEx = ({ collapsed }) => {
             height: collapsed ? 48 : 60,
             transition: "0.3s"
           }}
-        src={user ? user.photoURL : null}
+          src={photoURL}
         />
         <div style={{ paddingBottom: 16 }} />
-        {currentUser()}
+        <Typography variant={"h6"} noWrap>
+          {displayName}
+        </Typography>
       </div>
       <Divider />
     </>
-  )
-};
 
+  const wrap =
+    (user) => UserDisplay(user.photoURL, user.displayName)
+
+  const empty =
+    () => UserDisplay(null, 'Welcome')
+
+  const userGreeting =
+    either(empty, wrap)
+
+  if (initialising) {
+    return (
+      UserDisplay(null, 'Initialising User...')
+    );
+  }
+  if (error) {
+    return (
+      UserDisplay(null, 'Login Failed')
+    );
+  }
+  return userGreeting(maybeUser)
+};
 
 NavHeaderEx.propTypes = {
   collapsed: PropTypes.bool

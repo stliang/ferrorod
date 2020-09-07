@@ -36,7 +36,7 @@ const UserContextProvider = (props) => {
         storeCustomClaims(defaultClaims);
     };
 
-    const maybeUserF = (_user) => _user ? Maybe.Just(user) : Maybe.Nothing();
+    const maybeUserF = (_user) => _user ? Maybe.Just(_user) : Maybe.Nothing();
     const maybeUser = maybeUserF(user)
 
     const eitherUserF = (_user) => _user ? Right(_user) : Left('anonymous');
