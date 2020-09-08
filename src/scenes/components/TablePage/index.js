@@ -16,7 +16,6 @@ const TablePage = (props) => {
     )
     // const [data, setData] = React.useState(React.useMemo(() => makeData(20), []));
     const [data, setData] = React.useState([]);
-    const { firebaseInstance } = useContext(FirebaseContext)
     const { getPage, getRows, updateRow } = useContext(UserDataContext)
     const [skipPageReset, setSkipPageReset] = React.useState(false)
 

@@ -1,14 +1,14 @@
 import React, { useContext } from "react"
-import PropTypes from "prop-types"
 import Avatar from "@material-ui/core/Avatar"
-import Typography from "@material-ui/core/Typography"
+import curry from 'crocks/helpers/curry'
 import Divider from "@material-ui/core/Divider"
-import { UserContext } from "../../../services/contexts/UserContextProvider"
 import { either } from "crocks"
+import PropTypes from "prop-types"
+import Typography from "@material-ui/core/Typography"
+import { UserContext } from "../../../services/contexts/UserContextProvider"
 
-const NavHeaderEx = ({ collapsed }) => {
-  const { maybeUser, initialising, error } = useContext(UserContext)
-  const UserDisplay = (photoURL, displayName) =>
+const UserDisplay = curry(
+  (collapsed, photoURL, displayName) =>
     <>
       <div style={{ padding: collapsed ? 8 : 16, transition: "0.3s" }}>
         <Avatar
@@ -26,24 +26,29 @@ const NavHeaderEx = ({ collapsed }) => {
       </div>
       <Divider />
     </>
+)
+
+const NavHeaderEx = ({ collapsed }) => {
+  const { maybeUser, initialising, error } = useContext(UserContext)
+  const UserDisplay2 = UserDisplay(collapsed)
 
   const wrap =
-    (user) => UserDisplay(user.photoURL, user.displayName)
+    (user) => UserDisplay2(user.photoURL, user.displayName)
 
   const empty =
-    () => UserDisplay(null, 'Welcome')
+    () => UserDisplay2(null, 'Welcome')
 
   const userGreeting =
     either(empty, wrap)
 
   if (initialising) {
     return (
-      UserDisplay(null, 'Initialising User...')
+      UserDisplay2(null, 'Initialising User...')
     );
   }
   if (error) {
     return (
-      UserDisplay(null, 'Login Failed')
+      UserDisplay2(null, 'Login Failed')
     );
   }
   return userGreeting(maybeUser)

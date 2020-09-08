@@ -1,8 +1,9 @@
-import React, { createContext, useContext } from 'react';
-import { FirebaseContext } from './FirebaseContextProvider';
-import { UserContext } from './UserContextProvider';
+import React, { createContext, useContext } from 'react'
+import { compose, constant, curry, either, identity, tryCatch } from "crocks"
+import { FirebaseContext } from './FirebaseContextProvider'
+import { UserContext } from './UserContextProvider'
 
-export const UserDataContext = createContext();
+export const UserDataContext = createContext()
 
 // EXAMPLE: https://firebase.google.com/docs/firestore/query-data/query-cursors#web_2
 // New implementation is based on the following URL
@@ -26,6 +27,40 @@ const UserDataContextProvider = (props) => {
                 })
         )
     }
+
+    // https://www.freecodecamp.org/news/functional-programming-patterns-cookbook-3a0dfe2d7e0a/
+    // const wrap =
+    //     (user) => UserDisplay2(user.photoURL, user.displayName)
+
+    // const empty =
+    //     () => UserDisplay2(null, 'Welcome')
+
+    // const userGreeting =
+    //     either(empty, wrap)
+
+    // const _getRows = curry(
+    //     (_maybeUser, tableName) => {
+    //         compose(
+    //             either(constant("Error: getting data from table"), identity),
+    //             tryCatch(
+    //                 _maybeUser.map(user =>
+    //                     firebaseInstance
+    //                         .firestore()
+    //                         .collection('user_docs')
+    //                         .doc(user.uid)
+    //                         .collection(tableName).onSnapshot(snapshot => {
+    //                             const allDocs = snapshot.docs.map(doc => ({
+    //                                 id: doc.id,
+    //                                 ...doc.data()
+    //                             }))
+    //                             return allDocs
+    //                         })
+    //                 )
+    //                 // either(()=>[], identity)(_maybeUser)
+    //             )
+    //         )
+    //     }
+    // )
 
     const getPage = (pageSize, orderBy, setData, tableName) => {
         maybeUser.map(user =>
