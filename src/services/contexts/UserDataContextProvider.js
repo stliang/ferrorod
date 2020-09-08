@@ -3,6 +3,10 @@ import { compose, constant, curry, either, identity, tryCatch } from "crocks"
 import { FirebaseContext } from './FirebaseContextProvider'
 import { UserContext } from './UserContextProvider'
 
+import Result from 'crocks/Result'
+
+const { Err, Ok } = Result
+
 export const UserDataContext = createContext()
 
 // EXAMPLE: https://firebase.google.com/docs/firestore/query-data/query-cursors#web_2
@@ -29,38 +33,52 @@ const UserDataContextProvider = (props) => {
     }
 
     // https://www.freecodecamp.org/news/functional-programming-patterns-cookbook-3a0dfe2d7e0a/
-    // const wrap =
-    //     (user) => UserDisplay2(user.photoURL, user.displayName)
+    // _getRows returns Result e a
+    const _getRows = curry(
+        (_maybeUser, tableName) => {
+            compose(
+                either(() => Err('User is undefined'), identity),
+                _maybeUser.map(user => {
+                    tryCatch(
+                        firebaseInstance
+                            .firestore()
+                            .collection('user_docs')
+                            .doc(user.uid)
+                            .collection(tableName).onSnapshot(snapshot => {
+                                const allDocs = snapshot.docs.map(doc => ({
+                                    id: doc.id,
+                                    ...doc.data()
+                                }))
+                                return allDocs
+                            })
+                    )
+                }
+                )
+            )
+        }
+    )
 
-    // const empty =
-    //     () => UserDisplay2(null, 'Welcome')
-
-    // const userGreeting =
-    //     either(empty, wrap)
-
-    // const _getRows = curry(
-    //     (_maybeUser, tableName) => {
-    //         compose(
-    //             either(constant("Error: getting data from table"), identity),
-    //             tryCatch(
-    //                 _maybeUser.map(user =>
-    //                     firebaseInstance
-    //                         .firestore()
-    //                         .collection('user_docs')
-    //                         .doc(user.uid)
-    //                         .collection(tableName).onSnapshot(snapshot => {
-    //                             const allDocs = snapshot.docs.map(doc => ({
-    //                                 id: doc.id,
-    //                                 ...doc.data()
-    //                             }))
-    //                             return allDocs
-    //                         })
-    //                 )
-    //                 // either(()=>[], identity)(_maybeUser)
-    //             )
+    // const __getRows = curry(
+    //     (user, tableName) => {
+    //         tryCatch(
+    //             firebaseInstance
+    //                 .firestore()
+    //                 .collection('user_docs')
+    //                 .doc(user.uid)
+    //                 .collection(tableName).onSnapshot(snapshot => {
+    //                     const allDocs = snapshot.docs.map(doc => ({
+    //                         id: doc.id,
+    //                         ...doc.data()
+    //                     }))
+    //                     return allDocs
+    //                 })
     //         )
     //     }
     // )
+
+    const getRows2 = _getRows(maybeUser)
+
+
 
     const getPage = (pageSize, orderBy, setData, tableName) => {
         maybeUser.map(user =>

@@ -51,3 +51,6 @@ service cloud.firestore {
 
 ## Helpful Commands for Development
 yarn upgrade firebase@latest
+
+## Design Choices
+This project uses the crocks js library. I found crocks conceptually close to Haskell. Folktable and Elm are also good. Folkable is more concerned with smooth integration with JS which forgos currying. For large team, Folktable might make more sense.  As for Elm, more overhead might be required when integrating with the Firebase client library.
