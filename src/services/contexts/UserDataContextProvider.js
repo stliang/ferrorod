@@ -148,4 +148,5 @@ export default UserDataContextProvider;
  * https://firebase.google.com/docs/firestore/query-data/query-cursors#web_2
  * https://medium.com/technest/how-to-connect-firebase-cloud-firestore-to-your-react-app-1118fd182c60
  * https://www.freecodecamp.org/news/the-firestore-tutorial-for-2020-learn-by-example/
+ * https://github.com/evilsoft/crocks/blob/master/docs/src/pages/docs/crocks/Async.md
  */ 
