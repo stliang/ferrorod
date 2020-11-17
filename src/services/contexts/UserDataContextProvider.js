@@ -32,6 +32,22 @@ const UserDataContextProvider = (props) => {
         )
     }
 
+    // const getRows = (setData, tableName) => {
+    //     maybeUser.map(user =>
+    //         firebaseInstance
+    //             .firestore()
+    //             .collection('user_docs')
+    //             .doc(user.uid)
+    //             .collection(tableName).onSnapshot(snapshot => {
+    //                 const allDocs = snapshot.docs.map(doc => ({
+    //                     id: doc.id,
+    //                     ...doc.data()
+    //                 }));
+    //                 setData(allDocs);
+    //             })
+    //     )
+    // }
+
     const getPage = (pageSize, orderBy, setData, tableName) => {
         maybeUser.map(user =>
             firebaseInstance

@@ -24,6 +24,7 @@ const rawTheme = createMuiTheme({
     },
     success: {
       xLight: green[50],
+      main: red[500],
       dark: green[700],
     },
   },
