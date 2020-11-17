@@ -19,7 +19,8 @@
     "react-scripts": "^3.3.0",
     "react-spring": "^8.0.27",
     "react-table": "7.0.0-rc.15",
-    "uuid": "^8.0.0"
+    "uuid": "^8.0.0",
+    "victory": "^35.3.5"
   },
   "scripts": {
     "start": "react-scripts start",
