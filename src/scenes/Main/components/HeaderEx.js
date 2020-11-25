@@ -64,7 +64,7 @@ const styles = ({ spacing, transitions, breakpoints, palette, shape }) => ({
 const HeaderEx = ({ classes, screen }) => (
   <>
     <Typography noWrap color={"textSecondary"} className={classes.header}>
-      Layout v3.3
+      Layout v4.x
     </Typography>
     <div className={classes.grow} />
     <div className={classes.search}>

@@ -5,7 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^4.10.0",
     "@material-ui/icons": "^4.5.1",
-    "@mui-treasury/layout": "^3.3.3",
+    "@mui-treasury/layout": "^4.1.0",
+    "@mui-treasury/mockup": "^1.1.0",
     "crocks": "^0.12.4",
     "firebase": "^7.21.1",
     "lodash": "^4.17.15",
@@ -19,6 +20,8 @@
     "react-scripts": "^3.3.0",
     "react-spring": "^8.0.27",
     "react-table": "7.0.0-rc.15",
+    "source-map-explorer": "^2.4.2",
+    "styled-components": "^5.1.0",
     "uuid": "^8.0.0",
     "victory": "^35.3.5"
   },
