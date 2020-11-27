@@ -17,6 +17,7 @@ const UserDataContextProvider = (props) => {
      * @param {*} tableName 
      */
     const getRows = (setData, tableName) => {
+        debugger
         maybeUser.map(user =>
             firebaseInstance
                 .firestore()
@@ -27,6 +28,7 @@ const UserDataContextProvider = (props) => {
                         id: doc.id,
                         ...doc.data()
                     }));
+                    debugger
                     setData(allDocs);
                 })
         )

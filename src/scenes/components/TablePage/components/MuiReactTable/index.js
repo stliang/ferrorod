@@ -190,7 +190,7 @@ const MuiReactTable = ({
 
     const deleteRowHandler = (event) => {
         // const newData = removeByIndexs(data, Object.keys(selectedRowIds).map(x => parseInt(x, 10)));
-        // debugger
+       
         // setData(newData);
         removeByIndexs(data, Object.keys(selectedRowIds).map(x => parseInt(x, 10)));
     };

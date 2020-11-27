@@ -45,8 +45,9 @@ const AddRowDialog = props => {
         switchState.addMultiple ? setOpen(true) : setOpen(false);
     };
 
-    const handleChange = key => ({ target: { value } }) => {
-        setRow({ ...row, [key]: value });
+    const handleChange = key => ({ target: { value, type } }) => {
+        const newValue = type == "number" ? parseFloat(value) : value
+        setRow({ ...row, [key]: newValue });
     }
 
     return (

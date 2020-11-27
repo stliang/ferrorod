@@ -16,7 +16,7 @@ const { Nothing } = Maybe
 const NavContentEx = () => {
   const { customClaims, login, logout, maybeUser } = useContext(UserContext);
   const list = () => {
-    debugger
+  
     if (maybeUser.equals(Nothing())) {
       return roleBasedDisplay["anonymous"]
     } else {

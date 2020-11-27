@@ -45,9 +45,9 @@ const TablePage = (props) => {
         // const id = data[rowIndex].id
         // const fields = {[columnId]: value}
         // TODO: run fields validation such as isNaN and const pointNum = parseFloat(text)
-        // debugger
+        
         updateRow(data[rowIndex].id, {[columnId]: value}, tableName)
-        // debugger
+       
         
         // TODO; refresh data set when cell changed, problem is internet round trip is expensive
         // // Update loca data set

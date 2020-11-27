@@ -30,7 +30,7 @@ const maybeUserF = (_user) => _user ? Maybe.Just(_user) : Maybe.Nothing();
 export default function Main() {
     const mayBeUser = maybeUserF(null)
     const e = toEle(mayBeUser)
-    debugger
+    
     return (
         e
         // <div>
