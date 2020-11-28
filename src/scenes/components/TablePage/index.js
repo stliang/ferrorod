@@ -44,7 +44,7 @@ const TablePage = (props) => {
         const selectedColumns = tableColumns.filter(function (column) {
             return column.accessor == columnId;
         });
-        const newValue = selectedColumns[0]["type"] == "number" ? parseFloat(value) : value
+        const newValue = selectedColumns[0]["type"] == "number" && !isNaN(value) ? parseFloat(value) : value
         debugger
         if (!isNaN(newValue)) {
             updateRow(data[rowIndex].id, { [columnId]: newValue }, tableName)
