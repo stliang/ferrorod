@@ -20,10 +20,10 @@ const TablePage = (props) => {
     const [skipPageReset, setSkipPageReset] = React.useState(false)
 
     const refreshData = () => {
-        serverSidePagination ? 
-        getPage(5, 'timestamp', setData, tableName)
-        :
-        getRows(setData, tableName)
+        serverSidePagination ?
+            getPage(5, 'timestamp', setData, tableName)
+            :
+            getRows(setData, tableName)
     }
 
     useEffect(() => {
@@ -40,28 +40,15 @@ const TablePage = (props) => {
     const updateCell = (rowIndex, columnId, value) => {
         // We also turn on the flag to not reset the page
         setSkipPageReset(true)
-
-        // Update remote database
-        // const id = data[rowIndex].id
-        // const fields = {[columnId]: value}
-        // TODO: run fields validation such as isNaN and const pointNum = parseFloat(text)
-        
-        updateRow(data[rowIndex].id, {[columnId]: value}, tableName)
-       
-        
-        // TODO; refresh data set when cell changed, problem is internet round trip is expensive
-        // // Update loca data set
-        // setData(old =>
-        //     old.map((row, index) => {
-        //         if (index === rowIndex) {
-        //             return {
-        //                 ...old[rowIndex],
-        //                 [columnId]: value,
-        //             }
-        //         }
-        //         return row
-        //     })
-        // )
+        // Locate value data type from tableColumns and set newValue
+        const selectedColumns = tableColumns.filter(function (column) {
+            return column.accessor == columnId;
+        });
+        const newValue = selectedColumns[0]["type"] == "number" ? parseFloat(value) : value
+        debugger
+        if (!isNaN(newValue)) {
+            updateRow(data[rowIndex].id, { [columnId]: newValue }, tableName)
+        }
     }
     const hiddenColumns = tableColumns.filter(column => !column.show).map(column => column.accessor);
 
