@@ -46,9 +46,11 @@ const AddRowDialog = props => {
     };
 
     const handleChange = key => ({ target: { value, type } }) => {
-        const newValue = type == "number" && !isNaN(value) ? parseFloat(value) : value
-        debugger
-        setRow({ ...row, [key]: newValue });
+        if (type == "number" && !isNaN(value) ) {
+            setRow({ ...row, [key]: parseFloat(value) });
+        } else if (type != "number" ) {
+            setRow({ ...row, [key]: value });
+        }
     }
 
     return (

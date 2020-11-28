@@ -44,10 +44,10 @@ const TablePage = (props) => {
         const selectedColumns = tableColumns.filter(function (column) {
             return column.accessor == columnId;
         });
-        const newValue = selectedColumns[0]["type"] == "number" && !isNaN(value) ? parseFloat(value) : value
-        debugger
-        if (!isNaN(newValue)) {
-            updateRow(data[rowIndex].id, { [columnId]: newValue }, tableName)
+        if (selectedColumns[0]["type"] == "number" && !isNaN(value) ) {
+            updateRow(data[rowIndex].id, { [columnId]:  parseFloat(value) }, tableName)
+        } else if (selectedColumns[0]["type"] != "number" ) {
+            updateRow(data[rowIndex].id, { [columnId]: value }, tableName)
         }
     }
     const hiddenColumns = tableColumns.filter(column => !column.show).map(column => column.accessor);
