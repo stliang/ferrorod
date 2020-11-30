@@ -11,11 +11,10 @@ const AssetChart = props => {
     const [data, setData] = React.useState([]);
     const { getRows } = useContext(UserDataContext)
 
-    const refreshData = () => {
-        getRows(setData, tableName)
-    }
-
     useEffect(() => {
+        const refreshData = () => {
+            getRows(setData, tableName)
+        }
         refreshData();
     }, []);
 

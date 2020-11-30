@@ -1,11 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { FirebaseContext } from '../../../services/contexts/FirebaseContextProvider'
 import MuiReactTable from './components/MuiReactTable';
 import PropTypes from 'prop-types';
 import { UserDataContext } from '../../../services/contexts/UserDataContextProvider';
-import { config } from '../../../services/firebaseConfig';
 
 const TablePage = (props) => {
     const { initialValue, serverSidePagination, tableColumns, tableName } = props
@@ -42,11 +40,11 @@ const TablePage = (props) => {
         setSkipPageReset(true)
         // Locate value data type from tableColumns and set newValue
         const selectedColumns = tableColumns.filter(function (column) {
-            return column.accessor == columnId;
+            return column.accessor === columnId;
         });
-        if (selectedColumns[0]["type"] == "number" && !isNaN(value) ) {
+        if (selectedColumns[0]["type"] === "number" && !isNaN(value) ) {
             updateRow(data[rowIndex].id, { [columnId]:  parseFloat(value) }, tableName)
-        } else if (selectedColumns[0]["type"] != "number" ) {
+        } else if (selectedColumns[0]["type"] !== "number" ) {
             updateRow(data[rowIndex].id, { [columnId]: value }, tableName)
         }
     }

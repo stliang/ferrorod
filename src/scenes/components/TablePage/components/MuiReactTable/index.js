@@ -245,7 +245,7 @@ const MuiReactTable = ({
                             {headerGroup.headers.map(column => (
                                 <TableCell {...(column.id === 'selection' ? column.getHeaderProps() : column.getHeaderProps(column.getSortByToggleProps()))}>
                                     {column.render('Header')}
-                                    {column.id != 'selection' ?
+                                    {column.id !== 'selection' ?
                                         <TableSortLabel
                                             active={column.isSorted}
                                             direction={column.isSortedDesc ? 'desc' : 'asc'}
