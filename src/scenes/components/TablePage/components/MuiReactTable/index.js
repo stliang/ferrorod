@@ -51,6 +51,8 @@ const EditableCell = ({
     column: { id },
     updateCell, // This is a custom function that we supplied to our table instance
 }) => {
+
+    
     // We need to keep and update the state of the cell normally
     const [value, setValue] = React.useState(initialValue)
 
@@ -313,9 +315,11 @@ MuiReactTable.propTypes = {
     data: PropTypes.array.isRequired,
     tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
+            id: PropTypes.number.isRequired,
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
-            type: PropTypes.string.isRequired
+            type: PropTypes.string.isRequired,
+            show: PropTypes.bool.isRequired
         })
     ).isRequired,
     initialValue: PropTypes.object.isRequired,

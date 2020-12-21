@@ -73,9 +73,11 @@ const TablePage = (props) => {
 TablePage.propTypes = {
     tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
+            id: PropTypes.number.isRequired,
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
-            type: PropTypes.string.isRequired
+            type: PropTypes.string.isRequired,
+            show: PropTypes.bool.isRequired
         })
     ).isRequired,
     initialValue: PropTypes.object.isRequired,

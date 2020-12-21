@@ -89,12 +89,14 @@ TableToolbar.propTypes = {
     deleteRowHandler: PropTypes.func.isRequired,
     tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
+            id: PropTypes.number.isRequired,
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
-            type: PropTypes.string.isRequired
+            type: PropTypes.string.isRequired,
+            show: PropTypes.bool.isRequired
         })
     ).isRequired,
-    globalFilter: PropTypes.string.isRequired,
+    globalFilter: PropTypes.string,
     initialValue: PropTypes.object.isRequired,
     numSelected: PropTypes.number.isRequired,
     preGlobalFilteredRows: PropTypes.array.isRequired,
