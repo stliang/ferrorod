@@ -42,6 +42,7 @@ const TablePage = (props) => {
         const selectedColumns = tableColumns.filter(function (column) {
             return column.accessor === columnId;
         });
+        //debugger
         if (selectedColumns[0]["type"] === "number" && !isNaN(value) ) {
             updateRow(data[rowIndex].id, { [columnId]:  parseFloat(value) }, tableName)
         } else if (selectedColumns[0]["type"] !== "number" ) {
@@ -73,7 +74,7 @@ const TablePage = (props) => {
 TablePage.propTypes = {
     tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
-            id: PropTypes.number.isRequired,
+            key: PropTypes.string.isRequired,
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
             type: PropTypes.string.isRequired,

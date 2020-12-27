@@ -23,7 +23,7 @@ const Router = () => {
     return (
         <Switch>
             {navItems.map(iteam =>
-                <PrivilegedRoute key={iteam.id} path={iteam.path} privileges={iteam.privileges} component={iteam.page} />
+                <PrivilegedRoute key={iteam.key} path={iteam.path} privileges={iteam.privileges} component={iteam.page} />
             )}
         </Switch>
     )

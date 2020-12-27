@@ -54,8 +54,8 @@ const NavContentEx = () => {
 
   return (
     <List>
-      {list().map(({ path, primaryText, icon, id }, i) => (
-        <ListItemLink key={id} to={path} primary={primaryText} icon={<Icon>{icon}</Icon>} />
+      {list().map(({ path, primaryText, icon, key }, i) => (
+        <ListItemLink key={key} to={path} primary={primaryText} icon={<Icon>{icon}</Icon>} />
       ))}
       <Divider style={{ margin: "12px 0" }} />
       {loginButton()}

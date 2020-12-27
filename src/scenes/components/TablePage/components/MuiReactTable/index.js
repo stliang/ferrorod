@@ -48,10 +48,9 @@ const IndeterminateCheckbox = React.forwardRef(
 const EditableCell = ({
     cell: { value: initialValue },
     row: { index },
-    column: { id },
+    column: { id },  // column name
     updateCell, // This is a custom function that we supplied to our table instance
 }) => {
-
     
     // We need to keep and update the state of the cell normally
     const [value, setValue] = React.useState(initialValue)
@@ -81,7 +80,7 @@ EditableCell.propTypes = {
         index: PropTypes.number.isRequired
     }),
     column: PropTypes.shape({
-        id: PropTypes.number.isRequired
+        id: PropTypes.string.isRequired  // colmn name
     }),
     updateCell: PropTypes.func.isRequired
 };
@@ -315,7 +314,7 @@ MuiReactTable.propTypes = {
     data: PropTypes.array.isRequired,
     tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
-            id: PropTypes.number.isRequired,
+            key: PropTypes.string.isRequired,
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
             type: PropTypes.string.isRequired,

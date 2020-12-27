@@ -28,6 +28,8 @@ const UserDataContextProvider = (props) => {
                         ...doc.data()
                     }));
                     setData(allDocs);
+                    // debugger
+                    // console.log(allDocs)
                 })
         )
     }
@@ -63,6 +65,8 @@ const UserDataContextProvider = (props) => {
                         ...doc.data()
                     }));
                     setData(allDocs);
+                    // debugger
+                    // console.log(allDocs)
                 })
         )
     }
@@ -142,6 +146,7 @@ const UserDataContextProvider = (props) => {
     }
 
     const updateRow = (id, fields, tableName) => {
+        // debugger
         maybeUser.map(user =>
             firebaseInstance
                 .firestore()

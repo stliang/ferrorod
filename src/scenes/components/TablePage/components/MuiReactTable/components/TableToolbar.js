@@ -89,7 +89,7 @@ TableToolbar.propTypes = {
     deleteRowHandler: PropTypes.func.isRequired,
     tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
-            id: PropTypes.number.isRequired,
+            key: PropTypes.string.isRequired,
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
             type: PropTypes.string.isRequired,

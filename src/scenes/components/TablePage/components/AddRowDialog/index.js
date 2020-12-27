@@ -71,7 +71,7 @@ const AddRowDialog = props => {
                         column => column.show)
                         .map(column =>
                             <TextField
-                                key={column.id}
+                                key={column.key}
                                 margin="dense"
                                 label={column.label}
                                 type={column.type}
@@ -107,7 +107,7 @@ AddRowDialog.propTypes = {
     initialValue: PropTypes.object.isRequired,
     tableColumns: PropTypes.arrayOf(
         PropTypes.exact({
-            id: PropTypes.number.isRequired,
+            key: PropTypes.string.isRequired,
             accessor: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
             type: PropTypes.string.isRequired,

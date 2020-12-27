@@ -1,48 +1,48 @@
 export const tableColumns = [
     {
-        id: 7,
+        key: "7",
         label: 'First Name',
         accessor: 'firstName',
         type: 'text',
         show: true
     },
     {
-        id: 6,
+        key: "6",
         label: 'Last Name',
         accessor: 'lastName',
         type: 'text',
         show: true
     },
     {
-        id: 5,
+        key: "5",
         label: 'Task',
         accessor: 'task',
         type: 'text',
         show: true
     },
     {
-        id: 4,
+        key: "4",
         label: 'Steps',
         accessor: 'steps',
         type: 'text',
         show: true
     },
     {
-        id: 3,
+        key: "3",
         label: 'Status',
         accessor: 'status',
         type: 'text',
         show: true
     },
     {
-        id: 2,
+        key: "2",
         label: 'Progress',
         accessor: 'progress',
         type: 'number',
         show: true
     },
     {
-        id: 1,
+        key: "1",
         label: 'Timestamp',
         accessor: 'timestamp',
         type: 'number',
@@ -51,7 +51,6 @@ export const tableColumns = [
 ]
 
 export const initialValue = {
-    id: 0,
     firstName: '',
     lastName: '',
     task: '',
