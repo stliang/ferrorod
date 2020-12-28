@@ -23,7 +23,7 @@ The aim of this project is to provide role based google authentication, CSS, Rea
 4. [x] Implement server side pagination
 5. [x] Convert imperative to functional code (customClaims should be in the same ADT as user)
 6. [x] Implement chart to display asset data
-7. [x] Clean up all errors
+7. [-] Clean up all errors
 
 Sometimes getting the follow error when adding more assets:
 ``` 
@@ -81,7 +81,79 @@ Warning: Encountered two children with the same key, `10`. Keys should be unique
     in FirebaseContextProvider (at src/index.js:16)
     in App (at src/index.js:28)
 ```
-The above looks like a react-table problem.  Should update the lib and see if that fixes it.
+The above looks like a react-table problem. Should update the lib and see if that fixes it.
+
+Some time see the follow errors, but not sure what caused it:
+```
+Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+    in AssetChart (at Assets/index.js:15)
+    in Assets (at Router/index.js:14)
+    in Route (at Router/index.js:10)
+    in PrivilegedRoute (at Router/index.js:26)
+```
+```
+index.js:1 Warning: Received NaN for the `value` attribute. If this is expected, cast the value to a string.
+    in input (created by ForwardRef(InputBase))
+    in div (created by ForwardRef(InputBase))
+    in ForwardRef(InputBase) (created by WithStyles(ForwardRef(InputBase)))
+    in WithStyles(ForwardRef(InputBase)) (created by ForwardRef(Input))
+    in ForwardRef(Input) (created by WithStyles(ForwardRef(Input)))
+    in WithStyles(ForwardRef(Input)) (created by ForwardRef(TextField))
+    in div (created by ForwardRef(FormControl))
+    in ForwardRef(FormControl) (created by WithStyles(ForwardRef(FormControl)))
+    in WithStyles(ForwardRef(FormControl)) (created by ForwardRef(TextField))
+    in ForwardRef(TextField) (created by WithStyles(ForwardRef(TextField)))
+    in WithStyles(ForwardRef(TextField)) (at AddRowDialog/index.js:73)
+    in div (created by ForwardRef(DialogContent))
+    in ForwardRef(DialogContent) (created by WithStyles(ForwardRef(DialogContent)))
+    in WithStyles(ForwardRef(DialogContent)) (at AddRowDialog/index.js:66)
+    in div (created by ForwardRef(Paper))
+    in ForwardRef(Paper) (created by WithStyles(ForwardRef(Paper)))
+    in WithStyles(ForwardRef(Paper)) (created by ForwardRef(Dialog))
+    in div (created by Transition)
+    in Transition (created by ForwardRef(Fade))
+    in ForwardRef(Fade) (created by Unstable_TrapFocus)
+    in Unstable_TrapFocus (created by ForwardRef(Modal))
+    in div (created by ForwardRef(Modal))
+    in ForwardRef(Portal) (created by ForwardRef(Modal))
+    in ForwardRef(Modal) (created by ForwardRef(Dialog))
+    in ForwardRef(Dialog) (created by WithStyles(ForwardRef(Dialog)))
+    in WithStyles(ForwardRef(Dialog)) (at AddRowDialog/index.js:64)
+    in div (at AddRowDialog/index.js:58)
+    in AddRowDialog (at TableToolbar.js:54)
+    in div (created by ForwardRef(Toolbar))
+    in ForwardRef(Toolbar) (created by WithStyles(ForwardRef(Toolbar)))
+    in WithStyles(ForwardRef(Toolbar)) (at TableToolbar.js:49)
+    in TableToolbar (at MuiReactTable/index.js:231)
+    in div (created by ForwardRef(TableContainer))
+    in ForwardRef(TableContainer) (created by WithStyles(ForwardRef(TableContainer)))
+    in WithStyles(ForwardRef(TableContainer)) (at MuiReactTable/index.js:230)
+    in MuiReactTable (at TablePage/index.js:57)
+    in TablePage (at Assets/index.js:9)
+    in Assets (at Router/index.js:14)
+    in Route (at Router/index.js:10)
+    in PrivilegedRoute (at Router/index.js:26)
+    in Switch (at Router/index.js:24)
+    in Router (at ContentEx/index.js:24)
+    in div (at ContentEx/index.js:23)
+    in ContentEx (created by WithStyles(ContentEx))
+    in WithStyles(ContentEx) (at Main/index.js:85)
+    in main (created by ProxyComponent)
+    in ProxyComponent (created by StyledComponent)
+    in StyledComponent (created by Content)
+    in Content (at Main/index.js:84)
+    in Layout (created by Root)
+    in LayoutProvider (created by Root)
+    in ThemeProvider (created by Root)
+    in Root (at Main/index.js:67)
+    in Main (at src/index.js:20)
+    in Router (created by MemoryRouter)
+    in MemoryRouter (at src/index.js:19)
+    in UserDataContextProvider (at src/index.js:18)
+    in UserContextProvider (at src/index.js:17)
+    in FirebaseContextProvider (at src/index.js:16)
+    in App (at src/index.js:28)
+```
 
 ## Setup
 
