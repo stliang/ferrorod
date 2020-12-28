@@ -275,7 +275,7 @@ const MuiReactTable = ({
                 <TableFooter>
                     <TableRow>
                         {serverSidePagination ?
-                            <div>
+                            <th>
                                 <IconButton onClick={handlePreviousPage} aria-label="previous page">
                                     {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
                                 </IconButton>
@@ -285,7 +285,7 @@ const MuiReactTable = ({
                                 >
                                     {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                                 </IconButton>
-                            </div>
+                            </th>
                             :
                             <TablePagination
                                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: data.length }]}
