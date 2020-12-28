@@ -23,7 +23,7 @@ The aim of this project is to provide role based google authentication, CSS, Rea
 4. [x] Implement server side pagination
 5. [x] Convert imperative to functional code (customClaims should be in the same ADT as user)
 6. [x] Implement chart to display asset data
-7. [-] Clean up all errors
+7. [ ] Clean up all errors
 
 Sometimes getting the follow error when adding more assets:
 ``` 
