@@ -23,7 +23,65 @@ The aim of this project is to provide role based google authentication, CSS, Rea
 4. [x] Implement server side pagination
 5. [x] Convert imperative to functional code (customClaims should be in the same ADT as user)
 6. [x] Implement chart to display asset data
-7. [ ] Clean up all errors
+7. [x] Clean up all errors
+
+Sometimes getting the follow error when adding more assets:
+``` 
+Warning: Encountered two children with the same key, `10`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+    in select (created by ForwardRef(NativeSelectInput))
+    in ForwardRef(NativeSelectInput) (created by ForwardRef(InputBase))
+    in div (created by ForwardRef(InputBase))
+    in ForwardRef(InputBase) (created by WithStyles(ForwardRef(InputBase)))
+    in WithStyles(ForwardRef(InputBase)) (created by ForwardRef(Select))
+    in ForwardRef(Select) (created by WithStyles(ForwardRef(Select)))
+    in WithStyles(ForwardRef(Select)) (created by ForwardRef(TablePagination))
+    in div (created by ForwardRef(Toolbar))
+    in ForwardRef(Toolbar) (created by WithStyles(ForwardRef(Toolbar)))
+    in WithStyles(ForwardRef(Toolbar)) (created by ForwardRef(TablePagination))
+    in td (created by ForwardRef(TableCell))
+    in ForwardRef(TableCell) (created by WithStyles(ForwardRef(TableCell)))
+    in WithStyles(ForwardRef(TableCell)) (created by ForwardRef(TablePagination))
+    in ForwardRef(TablePagination) (created by WithStyles(ForwardRef(TablePagination)))
+    in WithStyles(ForwardRef(TablePagination)) (at MuiReactTable/index.js:290)
+    in tr (created by ForwardRef(TableRow))
+    in ForwardRef(TableRow) (created by WithStyles(ForwardRef(TableRow)))
+    in WithStyles(ForwardRef(TableRow)) (at MuiReactTable/index.js:276)
+    in tfoot (created by ForwardRef(TableFooter))
+    in ForwardRef(TableFooter) (created by WithStyles(ForwardRef(TableFooter)))
+    in WithStyles(ForwardRef(TableFooter)) (at MuiReactTable/index.js:275)
+    in table (created by ForwardRef(Table))
+    in ForwardRef(Table) (created by WithStyles(ForwardRef(Table)))
+    in WithStyles(ForwardRef(Table)) (at MuiReactTable/index.js:242)
+    in div (created by ForwardRef(TableContainer))
+    in ForwardRef(TableContainer) (created by WithStyles(ForwardRef(TableContainer)))
+    in WithStyles(ForwardRef(TableContainer)) (at MuiReactTable/index.js:230)
+    in MuiReactTable (at TablePage/index.js:57)
+    in TablePage (at Assets/index.js:9)
+    in Assets (at Router/index.js:14)
+    in Route (at Router/index.js:10)
+    in PrivilegedRoute (at Router/index.js:26)
+    in Switch (at Router/index.js:24)
+    in Router (at ContentEx/index.js:24)
+    in div (at ContentEx/index.js:23)
+    in ContentEx (created by WithStyles(ContentEx))
+    in WithStyles(ContentEx) (at Main/index.js:85)
+    in main (created by ProxyComponent)
+    in ProxyComponent (created by StyledComponent)
+    in StyledComponent (created by Content)
+    in Content (at Main/index.js:84)
+    in Layout (created by Root)
+    in LayoutProvider (created by Root)
+    in ThemeProvider (created by Root)
+    in Root (at Main/index.js:67)
+    in Main (at src/index.js:20)
+    in Router (created by MemoryRouter)
+    in MemoryRouter (at src/index.js:19)
+    in UserDataContextProvider (at src/index.js:18)
+    in UserContextProvider (at src/index.js:17)
+    in FirebaseContextProvider (at src/index.js:16)
+    in App (at src/index.js:28)
+```
+The above looks like a react-table problem.  Should update the lib and see if that fixes it.
 
 ## Setup
 

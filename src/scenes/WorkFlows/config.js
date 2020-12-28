@@ -1,48 +1,48 @@
 export const tableColumns = [
     {
-        key: "7",
+        key: "workflow/firstName",
         label: 'First Name',
         accessor: 'firstName',
         type: 'text',
         show: true
     },
     {
-        key: "6",
+        key: "workflow/lastName",
         label: 'Last Name',
         accessor: 'lastName',
         type: 'text',
         show: true
     },
     {
-        key: "5",
+        key: "workflow/task",
         label: 'Task',
         accessor: 'task',
         type: 'text',
         show: true
     },
     {
-        key: "4",
+        key: "workflow/steps",
         label: 'Steps',
         accessor: 'steps',
         type: 'text',
         show: true
     },
     {
-        key: "3",
+        key: "workflow/status",
         label: 'Status',
         accessor: 'status',
         type: 'text',
         show: true
     },
     {
-        key: "2",
+        key: "workflow/progress",
         label: 'Progress',
         accessor: 'progress',
         type: 'number',
         show: true
     },
     {
-        key: "1",
+        key: "workflow/timestamp",
         label: 'Timestamp',
         accessor: 'timestamp',
         type: 'number',

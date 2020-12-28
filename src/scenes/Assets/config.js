@@ -1,41 +1,41 @@
 export const tableColumns = [
     {
-        key: "6",
+        key: "asset/asset",
         label: 'Asset',
         accessor: 'asset',
         type: 'text',
         show: true
     },
     {
-        key: "5",
+        key: "asset/cost",
         label: 'Cost',
         accessor: 'cost',
         type: 'number',
         show: true
     },
     {
-        key: "4",
+        key: "asset/price",
         label: 'Price',
         accessor: 'price',
         type: 'number',
         show: true
     },
     {
-        key: "3",
+        key: "asset/quantity",
         label: 'Quantity',
         accessor: 'quantity',
         type: 'number',
         show: true
     },
     {
-        key: "2",
+        key: "asset/status",
         label: 'Status',
         accessor: 'status',
         type: 'text',
         show: true
     },
     {
-        key: "1",
+        key: "asset/timestamp",
         label: 'Timestamp',
         accessor: 'timestamp',
         type: 'number',

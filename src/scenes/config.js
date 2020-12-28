@@ -10,7 +10,7 @@ import WorkFlows from './WorkFlows';
 
 const anonymousNavItems = [
     {
-        key: "6",
+        key: "scene/",
         description: 'Products and services',
         exactRoute: true,
         icon: "home",
@@ -23,7 +23,7 @@ const anonymousNavItems = [
 
 const basicNavItems = [
     {
-        key: "5",
+        key: "scene/notify",
         description: 'Notification preference',
         exactRoute: false,
         icon: "notifications_none",
@@ -33,7 +33,7 @@ const basicNavItems = [
         privileges: BASIC,
     },
     {
-        key: "4",
+        key: "scene/grasses",
         description: 'Grasses',
         exactRoute: false,
         icon: "eco",
@@ -43,7 +43,7 @@ const basicNavItems = [
         privileges: BASIC,
     },
     {
-        key: "3",
+        key: "scene/schedule",
         description: 'Workflow scheduler',
         exactRoute: false,
         icon: "schedule",
@@ -53,7 +53,7 @@ const basicNavItems = [
         privileges: BASIC,
     },
     {
-        key: "2",
+        key: "scene/assets",
         description: 'Asset Inventory',
         exactRoute: false,
         icon: "category",
@@ -66,7 +66,7 @@ const basicNavItems = [
 
 const paidNavItems = [
     {
-        key: "1",
+        key: "scene/workflows",
         description: 'Workflow list',
         exactRoute: false,
         icon: "fast_forward",
@@ -79,7 +79,7 @@ const paidNavItems = [
 
 const adminNavItems = [
     {
-        key: "0",
+        key: "scene/settings",
         description: 'Application Settings',
         exactRoute: false,
         icon: "settings",
