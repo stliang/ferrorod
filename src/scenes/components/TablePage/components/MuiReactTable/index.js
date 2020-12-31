@@ -136,7 +136,8 @@ const MuiReactTable = ({
         usePagination,
         useRowSelect,
         hooks => {
-            hooks.flatColumns.push(columns => [
+            debugger
+            hooks.visibleColumns.push(columns => [
                 // Let's make a column for selection
                 {
                     id: 'selection',

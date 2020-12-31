@@ -19,7 +19,7 @@
     "react-router-dom": "^5.1.1",
     "react-scripts": "^3.3.0",
     "react-spring": "^8.0.27",
-    "react-table": "7.0.0-rc.15",
+    "react-table": "7.6.2",
     "source-map-explorer": "^2.4.2",
     "styled-components": "^5.1.0",
     "uuid": "^8.0.0",
