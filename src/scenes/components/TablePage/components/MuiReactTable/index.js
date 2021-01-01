@@ -51,7 +51,7 @@ const EditableCell = ({
     column: { id },  // column name
     updateCell, // This is a custom function that we supplied to our table instance
 }) => {
-    
+
     // We need to keep and update the state of the cell normally
     const [value, setValue] = React.useState(initialValue)
 
@@ -98,7 +98,7 @@ const MuiReactTable = ({
     initialValue,
     setData,
     refreshData,
-    skipPageReset,
+    skipReset,
     updateCell,
     tableName,
     serverSidePagination
@@ -123,7 +123,8 @@ const MuiReactTable = ({
             columns,
             data,
             defaultColumn,
-            autoResetPage: !skipPageReset,
+            autoResetPage: !skipReset,
+            autoResetSelectedRows: !skipReset,
             // updateCell isn't part of the API, but
             // anything we put into these options will
             // automatically be available on the instance.
@@ -192,7 +193,7 @@ const MuiReactTable = ({
 
     const deleteRowHandler = (event) => {
         // const newData = removeByIndexs(data, Object.keys(selectedRowIds).map(x => parseInt(x, 10)));
-       
+
         // setData(newData);
         removeByIndexs(data, Object.keys(selectedRowIds).map(x => parseInt(x, 10)));
     };
@@ -325,7 +326,7 @@ MuiReactTable.propTypes = {
     initialValue: PropTypes.object.isRequired,
     setData: PropTypes.func.isRequired,
     refreshData: PropTypes.func.isRequired,
-    skipPageReset: PropTypes.bool.isRequired,
+    skipReset: PropTypes.bool.isRequired,
     updateCell: PropTypes.func.isRequired,
     tableName: PropTypes.string.isRequired,
     serverSidePagination: PropTypes.bool.isRequired

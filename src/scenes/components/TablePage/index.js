@@ -15,18 +15,27 @@ const TablePage = (props) => {
     // const [data, setData] = React.useState(React.useMemo(() => makeData(20), []));
     const [data, setData] = React.useState([]);
     const { getPage, getRows, updateRow } = useContext(UserDataContext)
-    const [skipPageReset, setSkipPageReset] = React.useState(false)
+    // const [skipPageReset, setSkipPageReset] = React.useState(false)
+    // We need to keep the table from resetting the pageIndex when we
+    // Update data. So we can keep track of that flag with a ref.
+    const skipResetRef = React.useRef(false)
 
     const refreshData = () => {
+        debugger
         serverSidePagination ?
             getPage(5, 'timestamp', setData, tableName)
             :
             getRows(setData, tableName)
     }
 
+    // After data chagnes, we turn the flag back off
+    // so that if data actually changes when we're not
+    // editing it, the page is reset
     useEffect(() => {
         console.log('TODO: Need clean up using unsubscription when delete data');
         refreshData();
+        // setSkipPageReset(false)
+        skipResetRef.current = false
     }, []);
 
     // We need to keep the table from resetting the pageIndex when we
@@ -37,15 +46,15 @@ const TablePage = (props) => {
     // original data
     const updateCell = (rowIndex, columnId, value) => {
         // We also turn on the flag to not reset the page
-        setSkipPageReset(true)
+        skipResetRef.current = true
         // Locate value data type from tableColumns and set newValue
         const selectedColumns = tableColumns.filter(function (column) {
             return column.accessor === columnId;
         });
         //debugger
-        if (selectedColumns[0]["type"] === "number" && !isNaN(value) ) {
-            updateRow(data[rowIndex].id, { [columnId]:  parseFloat(value) }, tableName)
-        } else if (selectedColumns[0]["type"] !== "number" ) {
+        if (selectedColumns[0]["type"] === "number" && !isNaN(value)) {
+            updateRow(data[rowIndex].id, { [columnId]: parseFloat(value) }, tableName)
+        } else if (selectedColumns[0]["type"] !== "number") {
             updateRow(data[rowIndex].id, { [columnId]: value }, tableName)
         }
     }
@@ -62,7 +71,8 @@ const TablePage = (props) => {
                 initialValue={initialValue}
                 setData={setData}              // Internal
                 refreshData={refreshData}
-                skipPageReset={skipPageReset}  // Internal
+                // skipPageReset={skipPageReset}  // Internal
+                skipReset={skipResetRef.current}
                 updateCell={updateCell}        // Internal
                 tableName={tableName}
                 serverSidePagination={serverSidePagination}
