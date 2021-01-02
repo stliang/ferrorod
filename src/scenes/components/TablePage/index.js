@@ -21,7 +21,7 @@ const TablePage = (props) => {
     const skipResetRef = React.useRef(false)
 
     const refreshData = () => {
-        debugger
+        // debugger
         serverSidePagination ?
             getPage(5, 'timestamp', setData, tableName)
             :
