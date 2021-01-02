@@ -24,7 +24,8 @@ The aim of this project is to provide role based google authentication, CSS, Rea
 5. [x] Convert imperative to functional code (customClaims should be in the same ADT as user)
 6. [x] Implement chart to display asset data
 7. [x] Review [kitchen sink](https://github.com/tannerlinsley/react-table/blob/master/examples/kitchen-sink/src/App.js) or [editable table](https://github.com/tannerlinsley/react-table/blob/master/examples/editable-data/src/App.js) examples
-8. [ ] Clean up all errors
+8. [ ] Review [material-table](https://material-table.com/#/) to fix pagination control
+9. [ ] Clean up all errors
 
 Sometimes getting the follow error when adding more assets:
 ``` 
