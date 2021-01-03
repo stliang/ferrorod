@@ -260,6 +260,7 @@ const MuiReactTable = ({
                 </TableHead>
                 <TableBody>
                     {page.map((row, i) => {
+                        // debugger
                         prepareRow(row)
                         return (
                             <TableRow {...row.getRowProps()}>
